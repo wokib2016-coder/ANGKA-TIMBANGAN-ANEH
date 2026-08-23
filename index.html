@@ -259,7 +259,7 @@
 
         /* ===== SIMULASI (DISEMBUNYIKAN SECARA DEFAULT) ===== */
         .simulasi-section {
-            display: none; /* Awalnya tersembunyi */
+            display: none;
             margin-top: 20px;
             padding-top: 25px;
             border-top: 1px solid rgba(255,255,255,0.08);
@@ -370,13 +370,13 @@
             <div class="upload-archimedes" onclick="document.getElementById('uploadArchimedes').click()">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <p>Upload gambar Archimedes (JPG)</p>
-                <div class="file-name" id="namaFileArchimedes">Belum ada file</div>
+                <div class="file-name" id="namaFileArchimedes">archimedes_ilustrasi.jpg ✅</div>
                 <input type="file" id="uploadArchimedes" accept="image/jpeg,image/jpg">
             </div>
 
             <div class="gambar-container" id="gambarContainer">
-                <img id="gambarArchimedes" src="" alt="Gambar Archimedes" style="display:none;">
-                <span class="placeholder" id="placeholderArchimedes">
+                <img id="gambarArchimedes" src="https://raw.githubusercontent.com/wokib2016-coder/main/archimedes_ilustrasi.jpg" alt="Gambar Archimedes" onerror="this.style.display='none'; document.getElementById('placeholderArchimedes').style.display='block'">
+                <span class="placeholder" id="placeholderArchimedes" style="display:none;">
                     <i class="fas fa-image" style="font-size:32px; display:block; margin-bottom:8px;"></i>
                     Preview gambar akan tampil di sini
                 </span>
@@ -413,13 +413,13 @@
             <div class="upload-soal" onclick="document.getElementById('uploadSoal').click()">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <p>Upload soal (JPG)</p>
-                <div class="file-name" id="namaFileSoal">Belum ada file</div>
+                <div class="file-name" id="namaFileSoal">soal.jpg ✅</div>
                 <input type="file" id="uploadSoal" accept="image/jpeg,image/jpg">
             </div>
 
             <div class="soal-preview" id="soalPreview">
-                <img id="gambarSoal" src="" alt="Soal" style="display:none;">
-                <span class="placeholder" id="placeholderSoal">
+                <img id="gambarSoal" src="https://raw.githubusercontent.com/wokib2016-coder/main/soal.jpg" alt="Soal" onerror="this.style.display='none'; document.getElementById('placeholderSoal').style.display='block'">
+                <span class="placeholder" id="placeholderSoal" style="display:none;">
                     <i class="fas fa-file-image" style="font-size:32px; display:block; margin-bottom:8px;"></i>
                     Preview soal akan tampil di sini
                 </span>
@@ -448,6 +448,7 @@
                 </div>
 
                 <div class="pilihan" data-value="D" onclick="pilihOpsi('D')">
+                    <span class="letter">D</span>
                     <span class="text">X = 150, Y = 200, Z = 200</span>
                     <input type="radio" name="jawaban" value="D">
                 </div>
@@ -514,7 +515,6 @@
             section.style.display = 'block';
             text.textContent = 'Tutup Simulasi Percobaan Apel';
             icon.className = 'fas fa-chevron-up';
-            // Trigger resize agar kanvas menyesuaikan ukuran saat pertama kali dibuka
             window.dispatchEvent(new Event('resize'));
         } else {
             section.style.display = 'none';
@@ -1009,3 +1009,7 @@
 
 </body>
 </html>
+```
+
+---
+
