@@ -45,9 +45,11 @@
             font-size: 0.9rem;
             margin-top: 4px;
         }
+
+        /* ===== KOLOM: KIRI 25% - KANAN 75% ===== */
         .row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 25% 75%;
             gap: 30px;
         }
 
@@ -56,57 +58,57 @@
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 16px;
-            padding: 25px;
+            padding: 18px;
         }
         .kolom-kiri h2 {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #00D2FF;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
-        .kolom-kiri h2 i { color: #FFD93D; }
+        .kolom-kiri h2 i { color: #FFD93D; font-size: 0.9rem; }
 
         .upload-archimedes {
             border: 2px dashed rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 10px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
         }
         .upload-archimedes:hover { border-color: rgba(108,99,255,0.4); background: rgba(108,99,255,0.03); }
-        .upload-archimedes i { font-size: 32px; color: rgba(255,255,255,0.1); margin-bottom: 6px; }
-        .upload-archimedes p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
-        .upload-archimedes .file-name { color: #00D2FF; font-weight: 600; font-size: 0.85rem; margin-top: 4px; }
+        .upload-archimedes i { font-size: 20px; color: rgba(255,255,255,0.1); margin-bottom: 3px; }
+        .upload-archimedes p { color: rgba(255,255,255,0.3); font-size: 0.6rem; }
+        .upload-archimedes .file-name { color: #00D2FF; font-weight: 600; font-size: 0.65rem; margin-top: 2px; }
         .upload-archimedes input { display: none; }
 
         .gambar-container {
             background: rgba(255,255,255,0.02);
-            border-radius: 12px;
+            border-radius: 10px;
             border: 1px solid rgba(255,255,255,0.05);
-            padding: 15px;
-            margin-bottom: 18px;
+            padding: 8px;
+            margin-bottom: 10px;
             text-align: center;
-            min-height: 200px;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .gambar-container img { max-width: 100%; max-height: 400px; border-radius: 8px; display: block; }
-        .gambar-container .placeholder { color: rgba(255,255,255,0.15); font-size: 0.85rem; }
+        .gambar-container img { max-width: 100%; max-height: 180px; border-radius: 6px; display: block; }
+        .gambar-container .placeholder { color: rgba(255,255,255,0.15); font-size: 0.65rem; }
 
         .narasi {
             background: rgba(255,255,255,0.02);
-            border-radius: 12px;
-            padding: 18px;
+            border-radius: 8px;
+            padding: 10px;
             border-left: 3px solid #6C63FF;
         }
-        .narasi h3 { font-size: 0.95rem; color: #FFD93D; margin-bottom: 8px; }
-        .narasi p { font-size: 0.85rem; line-height: 1.8; color: rgba(255,255,255,0.7); }
+        .narasi h3 { font-size: 0.7rem; color: #FFD93D; margin-bottom: 4px; }
+        .narasi p { font-size: 0.65rem; line-height: 1.5; color: rgba(255,255,255,0.7); }
         .narasi .highlight { color: #00D2FF; font-weight: 600; }
 
         /* ===== KOLOM KANAN ===== */
@@ -130,25 +132,25 @@
         .upload-soal {
             border: 2px dashed rgba(255,255,255,0.1);
             border-radius: 12px;
-            padding: 20px;
+            padding: 12px 15px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .upload-soal:hover { border-color: rgba(108,99,255,0.4); background: rgba(108,99,255,0.03); }
-        .upload-soal i { font-size: 32px; color: rgba(255,255,255,0.1); margin-bottom: 6px; }
-        .upload-soal p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
-        .upload-soal .file-name { color: #00D2FF; font-weight: 600; font-size: 0.85rem; margin-top: 4px; }
+        .upload-soal i { font-size: 24px; color: rgba(255,255,255,0.1); margin-bottom: 3px; }
+        .upload-soal p { color: rgba(255,255,255,0.3); font-size: 0.7rem; }
+        .upload-soal .file-name { color: #00D2FF; font-weight: 600; font-size: 0.75rem; margin-top: 3px; }
         .upload-soal input { display: none; }
 
-        /* ===== PREVIEW SOAL - DIPERBAIKI ===== */
+        /* ===== PREVIEW SOAL ===== */
         .soal-preview {
             background: rgba(255,255,255,0.02);
             border-radius: 12px;
             padding: 15px;
-            margin-bottom: 20px;
-            min-height: 150px;
+            margin-bottom: 12px;
+            min-height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -156,7 +158,7 @@
         }
         .soal-preview img { 
             max-width: 100%; 
-            max-height: 600px; 
+            max-height: 800px; 
             width: auto;
             height: auto;
             border-radius: 8px; 
@@ -166,62 +168,62 @@
 
         /* ===== OPSI JAWABAN ===== */
         .opsi-container {
-            margin: 0 0 15px 0;
-            padding-top: 15px;
+            margin: 0 0 10px 0;
+            padding-top: 10px;
             border-top: 1px solid rgba(255,255,255,0.08);
         }
         .opsi-container .label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: rgba(255,255,255,0.4);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             display: block;
             font-weight: 600;
         }
         .pilihan {
             cursor: pointer;
-            padding: 12px 16px;
-            border-radius: 12px;
+            padding: 8px 12px;
+            border-radius: 10px;
             border: 2px solid rgba(255,255,255,0.05);
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             transition: all 0.3s;
             background: rgba(255,255,255,0.02);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
         }
         .pilihan:hover { border-color: rgba(108,99,255,0.3); background: rgba(108,99,255,0.05); }
         .pilihan.selected { border-color: #6C63FF; background: rgba(108,99,255,0.1); box-shadow: 0 0 30px rgba(108,99,255,0.05); }
         .pilihan .letter {
-            width: 30px; height: 30px; border-radius: 50%;
+            width: 24px; height: 24px; border-radius: 50%;
             background: rgba(255,255,255,0.05);
             display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.8rem; flex-shrink: 0;
+            font-weight: 700; font-size: 0.65rem; flex-shrink: 0;
         }
         .pilihan.selected .letter { background: #6C63FF; }
-        .pilihan .text { font-size: 0.9rem; color: rgba(255,255,255,0.8); white-space: nowrap; }
+        .pilihan .text { font-size: 0.85rem; color: rgba(255,255,255,0.8); white-space: nowrap; }
         .pilihan input { display: none; }
 
         /* ===== TOMBOL ===== */
         .tombol-opsi {
             display: flex;
-            gap: 12px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 10px;
         }
         .tombol-opsi button {
             flex: 1;
-            padding: 12px 16px;
+            padding: 8px 12px;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             cursor: pointer;
             transition: all 0.3s;
             font-family: 'Poppins', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
         .tombol-opsi .btn-primary { background: linear-gradient(135deg, #6C63FF, #FF6584); color: #fff; }
         .tombol-opsi .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(108,99,255,0.3); }
@@ -229,16 +231,17 @@
         .tombol-opsi .btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
         .hasil {
-            margin-top: 15px;
-            padding: 15px;
-            border-radius: 12px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 10px;
             display: none;
             font-weight: 600;
             text-align: center;
+            font-size: 0.8rem;
         }
         .hasil.benar { display: block; background: rgba(0,210,255,0.1); border: 1px solid rgba(0,210,255,0.2); color: #00D2FF; }
         .hasil.salah { display: block; background: rgba(255,101,132,0.1); border: 1px solid rgba(255,101,132,0.2); color: #FF6584; }
-        .hasil i { margin-right: 8px; }
+        .hasil i { margin-right: 6px; }
 
         /* ===== TOMBOL TOGGLE SIMULASI ===== */
         .toggle-simulasi-wrapper {
@@ -356,7 +359,7 @@
             .pilihan .text { white-space: normal; font-size: 0.8rem; }
             #simContainer { height: 300px; }
             .soal-preview img { max-height: 350px; }
-            .gambar-container img { max-height: 250px; }
+            .gambar-container img { max-height: 120px; }
         }
     </style>
 </head>
@@ -370,7 +373,7 @@
     </div>
 
     <div class="row">
-        <!-- ===== KOLOM KIRI ===== -->
+        <!-- ===== KOLOM KIRI (25%) ===== -->
         <div class="kolom-kiri">
             <h2><i class="fas fa-image"></i> Ilustrasi & Narasi</h2>
 
@@ -384,8 +387,8 @@
             <div class="gambar-container">
                 <img id="gambarArchimedes" src="https://raw.githubusercontent.com/wokib2016-coder/main/ilustrasi_archimedes.jpg" alt="Gambar Archimedes" onerror="this.style.display='none'; document.getElementById('placeholderArchimedes').style.display='block'">
                 <span class="placeholder" id="placeholderArchimedes" style="display:none;">
-                    <i class="fas fa-image" style="font-size:32px; display:block; margin-bottom:8px;"></i>
-                    Preview gambar akan tampil di sini
+                    <i class="fas fa-image" style="font-size:24px; display:block; margin-bottom:4px;"></i>
+                    Preview gambar
                 </span>
             </div>
 
@@ -396,24 +399,18 @@
                     mengalami gaya angkat ke atas yang besarnya sama dengan berat fluida yang
                     dipindahkan oleh benda tersebut."
                 </p>
-                <p style="margin-top:8px;">
+                <p style="margin-top:4px;">
                     <span class="highlight">Rumus:</span> 
                     <span style="color:#FFD93D;">F<sub>A</sub> = ρ<sub>f</sub> × g × V<sub>bf</sub></span>
-                    <br>
-                    <span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">
-                        F<sub>A</sub> = gaya Archimedes (N) &nbsp;|&nbsp; 
-                        ρ<sub>f</sub> = massa jenis fluida (kg/m³) &nbsp;|&nbsp;
-                        V<sub>bf</sub> = volume benda tercelup (m³)
-                    </span>
                 </p>
-                <p style="margin-top:8px; color:rgba(255,255,255,0.5); font-size:0.8rem;">
+                <p style="margin-top:4px; color:rgba(255,255,255,0.4); font-size:0.6rem;">
                     <i class="fas fa-info-circle" style="color:#00D2FF;"></i>
-                    <strong>Aplikasi:</strong> Kapal laut, kapal selam, balon udara, hidrometer, dan jembatan ponton.
+                    Aplikasi: Kapal laut, kapal selam, balon udara.
                 </p>
             </div>
         </div>
 
-        <!-- ===== KOLOM KANAN ===== -->
+        <!-- ===== KOLOM KANAN (75%) ===== -->
         <div class="kolom-kanan">
             <h2><i class="fas fa-pencil-alt"></i> Soal & Jawaban</h2>
 
@@ -424,7 +421,7 @@
                 <input type="file" id="uploadSoal" accept="image/jpeg,image/jpg">
             </div>
 
-            <!-- PREVIEW SOAL - TANPA SPACE KOSONG DI ATAS -->
+            <!-- PREVIEW SOAL - BESAR -->
             <div class="soal-preview" id="soalPreview">
                 <img id="gambarSoal" src="https://raw.githubusercontent.com/wokib2016-coder/main/soal_archimedes.jpg" alt="Soal" onerror="this.style.display='none'; document.getElementById('placeholderSoal').style.display='block'">
                 <span class="placeholder" id="placeholderSoal" style="display:none;">
