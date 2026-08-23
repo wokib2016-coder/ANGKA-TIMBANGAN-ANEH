@@ -46,70 +46,114 @@
             margin-top: 4px;
         }
 
-        /* ===== KOLOM: KIRI 25% - KANAN 75% ===== */
+        /* ===== KOLOM: KIRI 20% - KANAN 80% ===== */
         .row {
             display: grid;
-            grid-template-columns: 25% 75%;
-            gap: 30px;
+            grid-template-columns: 20% 80%;
+            gap: 25px;
         }
 
         /* ===== KOLOM KIRI ===== */
         .kolom-kiri {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 18px;
+            border-radius: 12px;
+            padding: 14px;
         }
         .kolom-kiri h2 {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: #00D2FF;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
-        .kolom-kiri h2 i { color: #FFD93D; font-size: 0.9rem; }
+        .kolom-kiri h2 i { color: #FFD93D; font-size: 0.75rem; }
 
-        .upload-archimedes {
+        /* ===== UPLOAD & PREVIEW GAMBAR ARCHIMEDES (TERINTEGRASI) ===== */
+        .upload-area {
             border: 2px dashed rgba(255,255,255,0.1);
             border-radius: 10px;
             padding: 10px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
-        .upload-archimedes:hover { border-color: rgba(108,99,255,0.4); background: rgba(108,99,255,0.03); }
-        .upload-archimedes i { font-size: 20px; color: rgba(255,255,255,0.1); margin-bottom: 3px; }
-        .upload-archimedes p { color: rgba(255,255,255,0.3); font-size: 0.6rem; }
-        .upload-archimedes .file-name { color: #00D2FF; font-weight: 600; font-size: 0.65rem; margin-top: 2px; }
-        .upload-archimedes input { display: none; }
+        .upload-area:hover { border-color: rgba(108,99,255,0.4); background: rgba(108,99,255,0.03); }
+        .upload-area i { font-size: 20px; color: rgba(255,255,255,0.1); margin-bottom: 3px; }
+        .upload-area p { color: rgba(255,255,255,0.3); font-size: 0.6rem; }
+        .upload-area .file-name { color: #00D2FF; font-weight: 600; font-size: 0.6rem; margin-top: 2px; }
+        .upload-area input { display: none; }
 
-        .gambar-container {
+        .preview-container {
             background: rgba(255,255,255,0.02);
-            border-radius: 10px;
+            border-radius: 8px;
             border: 1px solid rgba(255,255,255,0.05);
-            padding: 8px;
+            padding: 6px;
             margin-bottom: 10px;
             text-align: center;
-            min-height: 100px;
+            min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .gambar-container img { max-width: 100%; max-height: 180px; border-radius: 6px; display: block; }
-        .gambar-container .placeholder { color: rgba(255,255,255,0.15); font-size: 0.65rem; }
+        .preview-container img { max-width: 100%; max-height: 130px; border-radius: 4px; display: block; }
+        .preview-container .placeholder { color: rgba(255,255,255,0.15); font-size: 0.5rem; }
 
+        /* ===== NARASI ===== */
         .narasi {
             background: rgba(255,255,255,0.02);
             border-radius: 8px;
-            padding: 10px;
+            padding: 10px 12px;
             border-left: 3px solid #6C63FF;
         }
-        .narasi h3 { font-size: 0.7rem; color: #FFD93D; margin-bottom: 4px; }
-        .narasi p { font-size: 0.65rem; line-height: 1.5; color: rgba(255,255,255,0.7); }
-        .narasi .highlight { color: #00D2FF; font-weight: 600; }
+        .narasi h3 {
+            font-size: 0.8rem;
+            color: #FFD93D;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        .narasi p {
+            font-size: 0.7rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 6px;
+        }
+        .narasi .highlight {
+            color: #00D2FF;
+            font-weight: 600;
+        }
+        .narasi .rumus {
+            font-size: 0.75rem;
+            color: #FFD93D;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            margin: 6px 0 4px 0;
+            padding: 4px 0;
+            background: rgba(255,217,61,0.05);
+            border-radius: 4px;
+        }
+        .narasi .keterangan {
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+        .narasi .aplikasi {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+        .narasi .aplikasi i {
+            color: #00D2FF;
+            font-size: 0.6rem;
+            margin-right: 4px;
+        }
 
         /* ===== KOLOM KANAN ===== */
         .kolom-kanan {
@@ -129,28 +173,28 @@
         }
         .kolom-kanan h2 i { color: #FFD93D; }
 
-        .upload-soal {
+        /* ===== UPLOAD SOAL - TERINTEGRASI ===== */
+        .upload-soal-area {
             border: 2px dashed rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 12px 15px;
+            border-radius: 10px;
+            padding: 10px 15px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
             margin-bottom: 12px;
         }
-        .upload-soal:hover { border-color: rgba(108,99,255,0.4); background: rgba(108,99,255,0.03); }
-        .upload-soal i { font-size: 24px; color: rgba(255,255,255,0.1); margin-bottom: 3px; }
-        .upload-soal p { color: rgba(255,255,255,0.3); font-size: 0.7rem; }
-        .upload-soal .file-name { color: #00D2FF; font-weight: 600; font-size: 0.75rem; margin-top: 3px; }
-        .upload-soal input { display: none; }
+        .upload-soal-area:hover { border-color: rgba(108,99,255,0.4); background: rgba(108,99,255,0.03); }
+        .upload-soal-area i { font-size: 22px; color: rgba(255,255,255,0.1); margin-bottom: 2px; }
+        .upload-soal-area p { color: rgba(255,255,255,0.3); font-size: 0.7rem; }
+        .upload-soal-area .file-name { color: #00D2FF; font-weight: 600; font-size: 0.7rem; margin-top: 2px; }
+        .upload-soal-area input { display: none; }
 
-        /* ===== PREVIEW SOAL ===== */
         .soal-preview {
             background: rgba(255,255,255,0.02);
             border-radius: 12px;
             padding: 15px;
             margin-bottom: 12px;
-            min-height: 200px;
+            min-height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -158,7 +202,7 @@
         }
         .soal-preview img { 
             max-width: 100%; 
-            max-height: 800px; 
+            max-height: 900px; 
             width: auto;
             height: auto;
             border-radius: 8px; 
@@ -182,9 +226,9 @@
         .pilihan {
             cursor: pointer;
             padding: 8px 12px;
-            border-radius: 10px;
+            border-radius: 8px;
             border: 2px solid rgba(255,255,255,0.05);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             transition: all 0.3s;
             background: rgba(255,255,255,0.02);
             display: flex;
@@ -195,13 +239,13 @@
         .pilihan:hover { border-color: rgba(108,99,255,0.3); background: rgba(108,99,255,0.05); }
         .pilihan.selected { border-color: #6C63FF; background: rgba(108,99,255,0.1); box-shadow: 0 0 30px rgba(108,99,255,0.05); }
         .pilihan .letter {
-            width: 24px; height: 24px; border-radius: 50%;
+            width: 22px; height: 22px; border-radius: 50%;
             background: rgba(255,255,255,0.05);
             display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.65rem; flex-shrink: 0;
+            font-weight: 700; font-size: 0.6rem; flex-shrink: 0;
         }
         .pilihan.selected .letter { background: #6C63FF; }
-        .pilihan .text { font-size: 0.85rem; color: rgba(255,255,255,0.8); white-space: nowrap; }
+        .pilihan .text { font-size: 0.85rem; color: rgba(255,255,255,0.8); }
         .pilihan input { display: none; }
 
         /* ===== TOMBOL ===== */
@@ -214,7 +258,7 @@
             flex: 1;
             padding: 8px 12px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 700;
             font-size: 0.75rem;
             cursor: pointer;
@@ -231,9 +275,9 @@
         .tombol-opsi .btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
         .hasil {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 10px;
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
             display: none;
             font-weight: 600;
             text-align: center;
@@ -359,7 +403,7 @@
             .pilihan .text { white-space: normal; font-size: 0.8rem; }
             #simContainer { height: 300px; }
             .soal-preview img { max-height: 350px; }
-            .gambar-container img { max-height: 120px; }
+            .preview-container img { max-height: 80px; }
         }
     </style>
 </head>
@@ -373,57 +417,68 @@
     </div>
 
     <div class="row">
-        <!-- ===== KOLOM KIRI (25%) ===== -->
+        <!-- ===== KOLOM KIRI ===== -->
         <div class="kolom-kiri">
-            <h2><i class="fas fa-image"></i> Ilustrasi & Narasi</h2>
+            <h2><i class="fas fa-image"></i> Ilustrasi</h2>
 
-            <div class="upload-archimedes" onclick="document.getElementById('uploadArchimedes').click()">
+            <!-- ===== UPLOAD + PREVIEW GAMBAR ARCHIMEDES ===== -->
+            <div class="upload-area" onclick="document.getElementById('uploadArchimedes').click()">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <p>Upload gambar Archimedes (JPG)</p>
-                <div class="file-name" id="namaFileArchimedes">ilustrasi_archimedes.jpg ✅</div>
+                <div class="file-name" id="namaFileArchimedes">📁 ilustrasi_archimedes.jpg</div>
                 <input type="file" id="uploadArchimedes" accept="image/jpeg,image/jpg">
             </div>
 
-            <div class="gambar-container">
-                <img id="gambarArchimedes" src="https://raw.githubusercontent.com/wokib2016-coder/main/ilustrasi_archimedes.jpg" alt="Gambar Archimedes" onerror="this.style.display='none'; document.getElementById('placeholderArchimedes').style.display='block'">
+            <div class="preview-container">
+                <img id="gambarArchimedes" src="ilustrasi_archimedes.jpg" alt="Gambar Archimedes" onerror="this.style.display='none'; document.getElementById('placeholderArchimedes').style.display='block'">
                 <span class="placeholder" id="placeholderArchimedes" style="display:none;">
-                    <i class="fas fa-image" style="font-size:24px; display:block; margin-bottom:4px;"></i>
+                    <i class="fas fa-image" style="font-size:20px; display:block; margin-bottom:4px;"></i>
                     Preview gambar
                 </span>
             </div>
 
+            <!-- ===== NARASI ===== -->
             <div class="narasi">
                 <h3><i class="fas fa-lightbulb"></i> Prinsip Archimedes</h3>
                 <p>
-                    "Sebuah benda yang dicelupkan sebagian atau seluruhnya ke dalam fluida akan
-                    mengalami gaya angkat ke atas yang besarnya sama dengan berat fluida yang
-                    dipindahkan oleh benda tersebut."
+                    "Sebuah benda yang dicelupkan sebagian atau seluruhnya ke dalam fluida akan mengalami gaya angkat ke atas."
                 </p>
-                <p style="margin-top:4px;">
-                    <span class="highlight">Rumus:</span> 
-                    <span style="color:#FFD93D;">F<sub>A</sub> = ρ<sub>f</sub> × g × V<sub>bf</sub></span>
+                <p>
+                    Gaya angkat ini disebut <span class="highlight">gaya Archimedes</span>.
                 </p>
-                <p style="margin-top:4px; color:rgba(255,255,255,0.4); font-size:0.6rem;">
-                    <i class="fas fa-info-circle" style="color:#00D2FF;"></i>
-                    Aplikasi: Kapal laut, kapal selam, balon udara.
+                <p>
+                    Besar gaya Archimedes sama dengan berat fluida yang dipindahkan oleh benda.
                 </p>
+                <span class="rumus">F<sub>A</sub> = ρ<sub>f</sub> · g · V<sub>bf</sub></span>
+                <div class="keterangan">
+                    F<sub>A</sub> = gaya Archimedes (N)<br>
+                    ρ<sub>f</sub> = massa jenis fluida (kg/m³)<br>
+                    g = percepatan gravitasi (m/s²)<br>
+                    V<sub>bf</sub> = volume benda tercelup (m³)
+                </div>
+                <div class="aplikasi">
+                    <i class="fas fa-check-circle"></i> Kapal laut<br>
+                    <i class="fas fa-check-circle"></i> Kapal selam<br>
+                    <i class="fas fa-check-circle"></i> Balon udara<br>
+                    <i class="fas fa-check-circle"></i> Hidrometer
+                </div>
             </div>
         </div>
 
-        <!-- ===== KOLOM KANAN (75%) ===== -->
+        <!-- ===== KOLOM KANAN ===== -->
         <div class="kolom-kanan">
             <h2><i class="fas fa-pencil-alt"></i> Soal & Jawaban</h2>
 
-            <div class="upload-soal" onclick="document.getElementById('uploadSoal').click()">
+            <!-- ===== UPLOAD + PREVIEW SOAL ===== -->
+            <div class="upload-soal-area" onclick="document.getElementById('uploadSoal').click()">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <p>Upload soal (JPG)</p>
-                <div class="file-name" id="namaFileSoal">soal_archimedes.jpg ✅</div>
+                <div class="file-name" id="namaFileSoal">📁 soal_1.jpg</div>
                 <input type="file" id="uploadSoal" accept="image/jpeg,image/jpg">
             </div>
 
-            <!-- PREVIEW SOAL - BESAR -->
             <div class="soal-preview" id="soalPreview">
-                <img id="gambarSoal" src="https://raw.githubusercontent.com/wokib2016-coder/main/soal_archimedes.jpg" alt="Soal" onerror="this.style.display='none'; document.getElementById('placeholderSoal').style.display='block'">
+                <img id="gambarSoal" src="soal_1.jpg" alt="Soal" onerror="this.style.display='none'; document.getElementById('placeholderSoal').style.display='block'">
                 <span class="placeholder" id="placeholderSoal" style="display:none;">
                     <i class="fas fa-file-image" style="font-size:32px; display:block; margin-bottom:8px;"></i>
                     Preview soal akan tampil di sini
@@ -502,7 +557,7 @@
                 <button class="active" id="btnSlow">🐢 Lambat</button>
                 <button id="btnFast">🐇 Cepat</button>
             </div>
-            <div id="simFooter">Hukum Archimedes · 1. Terapung (massa jenis &lt; air) · 2. Melayang (massa jenis = air) · 3. Tenggelam (massa jenis &gt; air)</div>
+            <div id="simFooter">Hukum Archimedes · 1. Terapung · 2. Melayang · 3. Tenggelam</div>
         </div>
     </div>
 </div>
@@ -539,7 +594,7 @@
                 img.src = event.target.result;
                 img.style.display = 'block';
                 document.getElementById('placeholderArchimedes').style.display = 'none';
-                document.getElementById('namaFileArchimedes').textContent = '✅ ' + file.name;
+                document.getElementById('namaFileArchimedes').textContent = '📁 ' + file.name;
             };
             reader.readAsDataURL(file);
         }
@@ -557,7 +612,7 @@
                 img.src = event.target.result;
                 img.style.display = 'block';
                 document.getElementById('placeholderSoal').style.display = 'none';
-                document.getElementById('namaFileSoal').textContent = '✅ ' + file.name;
+                document.getElementById('namaFileSoal').textContent = '📁 ' + file.name;
             };
             reader.readAsDataURL(file);
         }
