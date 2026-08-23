@@ -370,12 +370,13 @@
             <div class="upload-archimedes" onclick="document.getElementById('uploadArchimedes').click()">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <p>Upload gambar Archimedes (JPG)</p>
-                <div class="file-name" id="namaFileArchimedes">archimedes_ilustrasi.jpg ✅</div>
+                <div class="file-name" id="namaFileArchimedes">ilustrasi_archimedes.jpg ✅</div>
                 <input type="file" id="uploadArchimedes" accept="image/jpeg,image/jpg">
             </div>
 
             <div class="gambar-container" id="gambarContainer">
-                <img id="gambarArchimedes" src="https://raw.githubusercontent.com/wokib2016-coder/main/archimedes_ilustrasi.jpg" alt="Gambar Archimedes" onerror="this.style.display='none'; document.getElementById('placeholderArchimedes').style.display='block'">
+                <!-- DIPERBAIKI: Menggunakan nama file langsung -->
+                <img id="gambarArchimedes" src="ilustrasi_archimedes.jpg" alt="Gambar Archimedes" onerror="this.style.display='none'; document.getElementById('placeholderArchimedes').style.display='block'">
                 <span class="placeholder" id="placeholderArchimedes" style="display:none;">
                     <i class="fas fa-image" style="font-size:32px; display:block; margin-bottom:8px;"></i>
                     Preview gambar akan tampil di sini
@@ -413,12 +414,13 @@
             <div class="upload-soal" onclick="document.getElementById('uploadSoal').click()">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <p>Upload soal (JPG)</p>
-                <div class="file-name" id="namaFileSoal">soal.jpg ✅</div>
+                <div class="file-name" id="namaFileSoal">soal_archimedes.jpg ✅</div>
                 <input type="file" id="uploadSoal" accept="image/jpeg,image/jpg">
             </div>
 
             <div class="soal-preview" id="soalPreview">
-                <img id="gambarSoal" src="https://raw.githubusercontent.com/wokib2016-coder/main/soal.jpg" alt="Soal" onerror="this.style.display='none'; document.getElementById('placeholderSoal').style.display='block'">
+                <!-- DIPERBAIKI: Menggunakan nama file langsung -->
+                <img id="gambarSoal" src="soal_archimedes.jpg" alt="Soal" onerror="this.style.display='none'; document.getElementById('placeholderSoal').style.display='block'">
                 <span class="placeholder" id="placeholderSoal" style="display:none;">
                     <i class="fas fa-file-image" style="font-size:32px; display:block; margin-bottom:8px;"></i>
                     Preview soal akan tampil di sini
@@ -503,9 +505,6 @@
 </div>
 
 <script>
-    // ================================================================
-    // LOGIKA TOMBOL TOGGLE SIMULASI
-    // ================================================================
     function toggleSimulasi() {
         const section = document.getElementById('simulasiSection');
         const text = document.getElementById('toggleText');
@@ -523,9 +522,6 @@
         }
     }
 
-    // ================================================================
-    // LOGIKA HALAMAN UTAMA & VALIDASI SOAL
-    // ================================================================
     const KUNCI_JAWABAN = 'D';
 
     document.getElementById('uploadArchimedes').addEventListener('change', function(e) {
@@ -608,9 +604,6 @@
         hasil.style.display = 'none';
     }
 
-    // ================================================================
-    // LOGIKA KANVAS SIMULASI APEL ARCHIMEDES
-    // ================================================================
     (function() {
         const canvas = document.getElementById('simCanvas');
         const ctx = canvas.getContext('2d');
@@ -1009,7 +1002,3 @@
 
 </body>
 </html>
-```
-
----
-
