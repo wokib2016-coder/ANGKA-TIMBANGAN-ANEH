@@ -10,48 +10,61 @@
             font-family: Arial, sans-serif;
             background: #0a0a1a;
             color: #fff;
-            padding: 20px;
+            padding: 15px;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 30px;
+            border-radius: 16px;
+            padding: 20px;
         }
         h1 {
             text-align: center;
             background: linear-gradient(135deg, #00D2FF, #6C63FF, #FF6584);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 30px;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+            margin-bottom: 25px;
         }
         .row {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 30px;
+            gap: 20px;
         }
         @media (max-width: 768px) {
             .row { grid-template-columns: 1fr; }
+            h1 { font-size: 1.4rem; }
         }
 
-        .kolom-kiri, .kolom-kanan {
+        .kolom {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 18px;
         }
+        .kolom h2 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+        .kolom h2 i { margin-right: 8px; }
 
-        /* ===== UPLOAD SOAL - PERBAIKAN UTAMA ===== */
+        /* ===== UPLOAD AREA ===== */
         .upload-area {
             border: 2px dashed rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 15px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            min-height: 100px;
+            min-height: 80px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -63,169 +76,216 @@
         }
         .upload-area input { display: none; }
 
-        /* Prompt upload - akan HILANG setelah upload */
-        #uploadPrompt {
-            display: block;
-        }
         #uploadPrompt i {
-            font-size: 32px;
-            color: rgba(255,255,255,0.15);
+            font-size: 28px;
+            color: rgba(255,255,255,0.12);
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
         #uploadPrompt p {
-            color: rgba(255,255,255,0.4);
-            font-size: 0.9rem;
-            margin: 0;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.8rem;
         }
         #uploadPrompt .file-name {
             color: #00D2FF;
             font-weight: 600;
-            font-size: 0.85rem;
-            margin-top: 4px;
+            font-size: 0.75rem;
+            margin-top: 2px;
         }
 
-        /* Preview gambar - muncul SETELAH upload */
         #soalPreview {
             display: none;
             width: 100%;
         }
         #soalPreview img {
             max-width: 100%;
-            max-height: 500px;
-            border-radius: 8px;
+            max-height: 450px;
+            border-radius: 6px;
         }
 
-        /* Preview ilustrasi */
         .preview-container {
-            margin-top: 10px;
+            margin-top: 8px;
             text-align: center;
-            min-height: 60px;
+            min-height: 50px;
         }
         .preview-container img {
             max-width: 100%;
-            max-height: 150px;
-            border-radius: 8px;
+            max-height: 130px;
+            border-radius: 6px;
         }
         .preview-container .placeholder {
-            color: rgba(255,255,255,0.2);
-            font-size: 0.8rem;
+            color: rgba(255,255,255,0.15);
+            font-size: 0.7rem;
         }
 
+        /* ===== NARASI ===== */
+        .narasi {
+            margin-top: 12px;
+            padding: 12px 14px;
+            border-left: 3px solid #6C63FF;
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+        }
+        .narasi h3 {
+            color: #FFD93D;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+        .narasi p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        .narasi .rumus {
+            display: block;
+            text-align: center;
+            color: #FFD93D;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 4px 0;
+        }
+        .narasi .keterangan {
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.35);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* ===== OPSI ===== */
         .opsi-container {
-            margin-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding-top: 15px;
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
         .opsi-container .label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: rgba(255,255,255,0.4);
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .pilihan {
             padding: 10px 14px;
-            border: 2px solid rgba(255,255,255,0.06);
+            border: 2px solid rgba(255,255,255,0.05);
             border-radius: 8px;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .pilihan:hover { border-color: rgba(108,99,255,0.3); }
-        .pilihan.selected { border-color: #6C63FF; background: rgba(108,99,255,0.1); }
+        .pilihan.selected { border-color: #6C63FF; background: rgba(108,99,255,0.08); }
         .pilihan .letter {
-            display: inline-block;
             width: 24px;
             height: 24px;
             border-radius: 50%;
             background: rgba(255,255,255,0.05);
-            text-align: center;
-            line-height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 700;
             font-size: 0.7rem;
-            margin-right: 10px;
+            flex-shrink: 0;
         }
         .pilihan.selected .letter { background: #6C63FF; }
 
         .tombol {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 12px;
             flex-wrap: wrap;
         }
         .tombol button {
             flex: 1;
             min-width: 100px;
-            padding: 10px 16px;
+            padding: 10px 14px;
             border: none;
             border-radius: 8px;
             font-weight: 700;
+            font-size: 0.8rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
         .btn-primary { background: linear-gradient(135deg, #6C63FF, #FF6584); color: #fff; }
-        .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+        .btn-primary:active { transform: scale(0.97); }
+        .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.08); }
+        .btn-secondary:active { transform: scale(0.97); }
 
         .hasil {
             margin-top: 10px;
-            padding: 10px;
+            padding: 10px 14px;
             border-radius: 8px;
             display: none;
             text-align: center;
             font-weight: 600;
+            font-size: 0.85rem;
         }
-        .hasil.benar { display: block; background: rgba(0,210,255,0.1); color: #00D2FF; }
-        .hasil.salah { display: block; background: rgba(255,101,132,0.1); color: #FF6584; }
+        .hasil.benar { display: block; background: rgba(0,210,255,0.08); border: 1px solid rgba(0,210,255,0.15); color: #00D2FF; }
+        .hasil.salah { display: block; background: rgba(255,101,132,0.08); border: 1px solid rgba(255,101,132,0.15); color: #FF6584; }
+        .hasil.peringatan { display: block; background: rgba(255,217,61,0.05); border: 1px solid rgba(255,217,61,0.1); color: #FFD93D; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>🌊 Prinsip Archimedes</h1>
+    <p class="subtitle">Pembelajaran dengan pendekatan <strong>Deep Learning</strong> • Konsep & Aplikasi</p>
 
     <div class="row">
-        <!-- KOLOM KIRI -->
-        <div class="kolom-kiri">
-            <h2 style="color:#00D2FF; font-size:1rem;">📸 Ilustrasi</h2>
+        <!-- ===== KOLOM KIRI ===== -->
+        <div class="kolom">
+            <h2 style="color:#00D2FF;">📸 Ilustrasi</h2>
 
             <div class="upload-area" onclick="document.getElementById('uploadArchimedes').click()">
-                <i>☁️</i>
-                <p>Upload gambar Archimedes (JPG)</p>
-                <div class="file-name" id="namaFileArchimedes">📁 ilustrasi_archimedes.jpg</div>
+                <div id="uploadPromptArch">
+                    <i>☁️</i>
+                    <p>Upload gambar Archimedes (JPG)</p>
+                    <div class="file-name" id="namaFileArch">📁 ilustrasi_archimedes.jpg</div>
+                </div>
                 <input type="file" id="uploadArchimedes" accept="image/*">
             </div>
 
             <div class="preview-container">
-                <img id="gambarArchimedes" src="ilustrasi_archimedes.jpg" alt="Ilustrasi Archimedes" onerror="this.style.display='none'; document.getElementById('placeholderArchimedes').style.display='block'">
-                <span class="placeholder" id="placeholderArchimedes" style="display:none;">Preview gambar</span>
+                <img id="gambarArchimedes" src="ilustrasi_archimedes.jpg" alt="Archimedes" onerror="this.style.display='none'; document.getElementById('placeholderArch').style.display='block'">
+                <span class="placeholder" id="placeholderArch" style="display:none;">Preview gambar</span>
             </div>
 
-            <div style="margin-top:15px; padding:12px; border-left:3px solid #6C63FF; background:rgba(255,255,255,0.02); border-radius:4px;">
-                <p style="font-size:0.85rem; color:rgba(255,255,255,0.7);">
-                    <strong style="color:#FFD93D;">Prinsip Archimedes:</strong><br>
+            <div class="narasi">
+                <h3>💡 Prinsip Archimedes</h3>
+                <p>
                     "Sebuah benda yang dicelupkan sebagian atau seluruhnya ke dalam fluida akan mengalami gaya angkat ke atas."
                 </p>
-                <p style="font-size:0.8rem; color:#00D2FF; text-align:center; padding:4px 0;">
-                    F<sub>A</sub> = ρ<sub>f</sub> · g · V<sub>bf</sub>
+                <p>
+                    Gaya angkat ini disebut <strong style="color:#00D2FF;">gaya Archimedes</strong>.
                 </p>
+                <span class="rumus">F<sub>A</sub> = ρ<sub>f</sub> · g · V<sub>bf</sub></span>
+                <div class="keterangan">
+                    F<sub>A</sub> = gaya Archimedes (N)<br>
+                    ρ<sub>f</sub> = massa jenis fluida (kg/m³)<br>
+                    g = percepatan gravitasi (m/s²)<br>
+                    V<sub>bf</sub> = volume benda tercelup (m³)
+                </div>
             </div>
         </div>
 
-        <!-- KOLOM KANAN -->
-        <div class="kolom-kanan">
-            <h2 style="color:#FF6584; font-size:1rem;">📝 Soal & Jawaban</h2>
+        <!-- ===== KOLOM KANAN ===== -->
+        <div class="kolom">
+            <h2 style="color:#FF6584;">📝 Soal & Jawaban</h2>
 
-            <!-- ===== UPLOAD SOAL - DIPERBAIKI ===== -->
+            <!-- ===== UPLOAD SOAL - FIX ===== -->
             <div class="upload-area" onclick="document.getElementById('uploadSoal').click()">
 
-                <!-- PROMPT UPLOAD (akan HILANG setelah upload) -->
+                <!-- PROMPT (HILANG setelah upload) -->
                 <div id="uploadPrompt">
                     <i>☁️</i>
                     <p>Upload soal (JPG)</p>
                     <div class="file-name">📁 soal_1.jpg</div>
                 </div>
 
-                <!-- PREVIEW GAMBAR SOAL (akan MUNCUL setelah upload) -->
+                <!-- PREVIEW GAMBAR (MUNCUL setelah upload) -->
                 <div id="soalPreview">
                     <img id="gambarSoal" src="#" alt="Soal">
                 </div>
@@ -233,7 +293,7 @@
                 <input type="file" id="uploadSoal" accept="image/*">
             </div>
 
-            <!-- OPSI JAWABAN -->
+            <!-- ===== OPSI JAWABAN ===== -->
             <div class="opsi-container">
                 <span class="label">✅ Pilih jawaban yang paling tepat:</span>
 
@@ -276,25 +336,25 @@
                 const img = document.getElementById('gambarArchimedes');
                 img.src = event.target.result;
                 img.style.display = 'block';
-                document.getElementById('placeholderArchimedes').style.display = 'none';
-                document.getElementById('namaFileArchimedes').textContent = '📁 ' + file.name;
+                document.getElementById('placeholderArch').style.display = 'none';
+                document.getElementById('namaFileArch').textContent = '📁 ' + file.name;
             };
             reader.readAsDataURL(file);
         }
     });
 
     // ================================================================
-    // UPLOAD SOAL - DIPERBAIKI ✅
+    // UPLOAD SOAL - FIX ✅
     // ================================================================
     document.getElementById('uploadSoal').addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function(event) {
-                // 1. SEMBUNYIKAN prompt upload (tulisan "Upload soal (JPG)" + "soal_1.jpg")
+                // 1. SEMBUNYIKAN prompt upload
                 document.getElementById('uploadPrompt').style.display = 'none';
 
-                // 2. TAMPILKAN gambar soal di tempat yang SAMA
+                // 2. TAMPILKAN gambar di tempat yang SAMA
                 const preview = document.getElementById('soalPreview');
                 preview.style.display = 'block';
                 document.getElementById('gambarSoal').src = event.target.result;
@@ -315,26 +375,25 @@
             el.classList.remove('selected');
             if (el.dataset.value === value) el.classList.add('selected');
         });
-        document.getElementById('hasil').className = 'hasil';
-        document.getElementById('hasil').style.display = 'none';
+        const hasil = document.getElementById('hasil');
+        hasil.className = 'hasil';
+        hasil.style.display = 'none';
     }
 
     function cekJawaban() {
         const hasil = document.getElementById('hasil');
         if (!jawaban) {
-            hasil.className = 'hasil';
+            hasil.className = 'hasil peringatan';
+            hasil.innerHTML = '⚠️ Silakan pilih jawaban terlebih dahulu!';
             hasil.style.display = 'block';
-            hasil.style.background = 'rgba(255,217,61,0.05)';
-            hasil.style.color = '#FFD93D';
-            hasil.innerHTML = '⚠️ Pilih jawaban dulu!';
             return;
         }
         if (jawaban === KUNCI) {
             hasil.className = 'hasil benar';
-            hasil.innerHTML = '✅ Jawaban BENAR! 🎉';
+            hasil.innerHTML = '✅ Jawaban BENAR! 🎉 Selamat!';
         } else {
             hasil.className = 'hasil salah';
-            hasil.innerHTML = '❌ Salah. Jawaban benar: <strong>D. X = 150, Y = 200, Z = 200</strong>';
+            hasil.innerHTML = '❌ Jawaban SALAH. Jawaban yang benar adalah <strong>D. X = 150, Y = 200, Z = 200</strong>.';
         }
         hasil.style.display = 'block';
     }
@@ -342,8 +401,9 @@
     function resetJawaban() {
         jawaban = null;
         document.querySelectorAll('.pilihan').forEach(el => el.classList.remove('selected'));
-        document.getElementById('hasil').className = 'hasil';
-        document.getElementById('hasil').style.display = 'none';
+        const hasil = document.getElementById('hasil');
+        hasil.className = 'hasil';
+        hasil.style.display = 'none';
     }
 </script>
 
