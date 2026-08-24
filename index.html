@@ -5,61 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prinsip Archimedes - Deep Learning</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ===== RESET & DASAR ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: #0a0a1a;
             color: #fff;
             padding: 16px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
+
         .container {
             max-width: 1100px;
+            width: 100%;
             margin: 0 auto;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 24px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
+
+        /* ===== HEADER ===== */
         h1 {
             text-align: center;
             font-size: 2rem;
+            font-weight: 900;
             background: linear-gradient(135deg, #00D2FF, #6C63FF, #FF6584);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 4px;
+            letter-spacing: 1px;
         }
+
         .subtitle {
             text-align: center;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.85rem;
             margin-bottom: 24px;
+            font-weight: 400;
         }
+
+        .subtitle strong {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== GRID 2 KOLOM ===== */
         .row {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 24px;
         }
+
         @media (max-width: 768px) {
-            .row { grid-template-columns: 1fr; }
-            h1 { font-size: 1.5rem; }
+            .row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .container {
+                padding: 16px;
+            }
         }
 
+        /* ===== CARD ===== */
         .card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 14px;
             padding: 18px;
+            transition: 0.3s;
         }
+
         .card-title {
             font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .card-title i { margin-right: 8px; }
 
-        /* ===== UPLOAD AREA ===== */
+        /* ===== UPLOAD BOX (untuk ilustrasi) ===== */
         .upload-box {
-            border: 2px dashed rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 16px;
             text-align: center;
@@ -70,104 +111,156 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            background: rgba(255, 255, 255, 0.01);
         }
-        .upload-box:hover {
-            border-color: rgba(108,99,255,0.4);
-            background: rgba(108,99,255,0.03);
-        }
-        .upload-box input { display: none; }
 
-        #promptUpload i {
-            font-size: 28px;
-            color: rgba(255,255,255,0.1);
-            display: block;
+        .upload-box:hover {
+            border-color: rgba(108, 99, 255, 0.4);
+            background: rgba(108, 99, 255, 0.03);
         }
-        #promptUpload p {
-            color: rgba(255,255,255,0.3);
+
+        .upload-box input[type="file"] {
+            display: none;
+        }
+
+        .upload-box i {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.1);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .upload-box p {
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.8rem;
             margin: 2px 0;
         }
-        #promptUpload .nama-file {
+
+        .upload-box .nama-file {
             color: #00D2FF;
             font-weight: 600;
             font-size: 0.75rem;
         }
 
-        #previewGambar {
-            display: none;
-            width: 100%;
-        }
-        #previewGambar img {
-            max-width: 100%;
-            max-height: 400px;
-            border-radius: 8px;
-        }
-
-        /* ===== PREVIEW KECIL ===== */
+        /* ===== PREVIEW KECIL (ilustrasi) ===== */
         .preview-kecil {
             margin-top: 10px;
             text-align: center;
             min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .preview-kecil img {
             max-width: 100%;
-            max-height: 120px;
+            max-height: 130px;
             border-radius: 6px;
+            display: block;
         }
+
         .preview-kecil .placeholder {
-            color: rgba(255,255,255,0.12);
+            color: rgba(255, 255, 255, 0.12);
             font-size: 0.7rem;
+        }
+
+        /* ===== PREVIEW SOAL (besar) ===== */
+        #previewSoal {
+            display: block;
+            /* SELALU TAMPIL */;
+            width: 100%;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        #previewSoal img {
+            max-width: 100%;
+            max-height: 450px;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* ===== NARASI ===== */
         .narasi {
             margin-top: 14px;
-            padding: 12px 14px;
+            padding: 14px 16px;
             border-left: 3px solid #6C63FF;
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
             border-radius: 4px;
         }
+
         .narasi h3 {
             color: #FFD93D;
-            font-size: 0.85rem;
-            margin-bottom: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            font-weight: 700;
         }
+
         .narasi p {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.7);
-            line-height: 1.6;
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
             margin-bottom: 4px;
         }
+
+        .narasi .highlight {
+            color: #00D2FF;
+            font-weight: 600;
+        }
+
         .narasi .rumus {
             display: block;
             text-align: center;
             color: #FFD93D;
             font-weight: 600;
-            font-size: 0.85rem;
-            padding: 6px 0 2px;
+            font-size: 0.9rem;
+            padding: 8px 0 4px;
+            background: rgba(255, 217, 61, 0.04);
+            border-radius: 4px;
+            margin: 6px 0;
         }
+
         .narasi .keterangan {
-            font-size: 0.6rem;
-            color: rgba(255,255,255,0.3);
+            font-size: 0.62rem;
+            color: rgba(255, 255, 255, 0.35);
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+        .narasi .aplikasi {
+            margin-top: 6px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.8;
+        }
+
+        .narasi .aplikasi i {
+            color: #00D2FF;
+            margin-right: 4px;
         }
 
         /* ===== OPSI JAWABAN ===== */
         .opsi-wrapper {
-            margin-top: 16px;
+            margin-top: 18px;
             padding-top: 14px;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
+
         .opsi-wrapper .label {
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
+
         .opsi {
             padding: 10px 14px;
-            border: 2px solid rgba(255,255,255,0.05);
+            border: 2px solid rgba(255, 255, 255, 0.05);
             border-radius: 8px;
             margin-bottom: 5px;
             cursor: pointer;
@@ -175,15 +268,26 @@
             font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.01);
         }
-        .opsi:hover { border-color: rgba(108,99,255,0.25); }
-        .opsi.selected { border-color: #6C63FF; background: rgba(108,99,255,0.07); }
+
+        .opsi:hover {
+            border-color: rgba(108, 99, 255, 0.3);
+            background: rgba(108, 99, 255, 0.03);
+        }
+
+        .opsi.selected {
+            border-color: #6C63FF;
+            background: rgba(108, 99, 255, 0.08);
+            box-shadow: 0 0 20px rgba(108, 99, 255, 0.03);
+        }
+
         .opsi .huruf {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -191,217 +295,303 @@
             font-size: 0.7rem;
             flex-shrink: 0;
         }
-        .opsi.selected .huruf { background: #6C63FF; }
 
+        .opsi.selected .huruf {
+            background: #6C63FF;
+        }
+
+        /* ===== TOMBOL ===== */
         .tombol-group {
             display: flex;
             gap: 10px;
-            margin-top: 12px;
+            margin-top: 14px;
             flex-wrap: wrap;
         }
+
         .tombol-group button {
             flex: 1;
             min-width: 100px;
-            padding: 10px 14px;
+            padding: 10px 16px;
             border: none;
             border-radius: 8px;
             font-weight: 700;
             font-size: 0.8rem;
             cursor: pointer;
             transition: 0.2s;
+            font-family: inherit;
         }
-        .btn-primary { background: linear-gradient(135deg, #6C63FF, #FF6584); color: #fff; }
-        .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.08); }
-        .btn-primary:active, .btn-secondary:active { transform: scale(0.97); }
 
+        .tombol-group .btn-primary {
+            background: linear-gradient(135deg, #6C63FF, #FF6584);
+            color: #fff;
+        }
+
+        .tombol-group .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.25);
+        }
+
+        .tombol-group .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tombol-group .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tombol-group button:active {
+            transform: scale(0.97);
+        }
+
+        /* ===== HASIL ===== */
         .hasil {
-            margin-top: 10px;
-            padding: 10px 14px;
+            margin-top: 12px;
+            padding: 12px 16px;
             border-radius: 8px;
             display: none;
             text-align: center;
             font-weight: 600;
             font-size: 0.85rem;
+            line-height: 1.5;
         }
-        .hasil.benar { display: block; background: rgba(0,210,255,0.08); border: 1px solid rgba(0,210,255,0.15); color: #00D2FF; }
-        .hasil.salah { display: block; background: rgba(255,101,132,0.08); border: 1px solid rgba(255,101,132,0.15); color: #FF6584; }
-        .hasil.warning { display: block; background: rgba(255,217,61,0.05); border: 1px solid rgba(255,217,61,0.1); color: #FFD93D; }
+
+        .hasil.benar {
+            display: block;
+            background: rgba(0, 210, 255, 0.08);
+            border: 1px solid rgba(0, 210, 255, 0.15);
+            color: #00D2FF;
+        }
+
+        .hasil.salah {
+            display: block;
+            background: rgba(255, 101, 132, 0.08);
+            border: 1px solid rgba(255, 101, 132, 0.15);
+            color: #FF6584;
+        }
+
+        .hasil.warning {
+            display: block;
+            background: rgba(255, 217, 61, 0.05);
+            border: 1px solid rgba(255, 217, 61, 0.1);
+            color: #FFD93D;
+        }
+
+        .hasil i {
+            margin-right: 6px;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🌊 Prinsip Archimedes</h1>
-    <p class="subtitle">Pembelajaran dengan pendekatan <strong>Deep Learning</strong> • Konsep & Aplikasi</p>
+    <div class="container">
+        <!-- ===== HEADER ===== -->
+        <h1>🌊 Prinsip Archimedes</h1>
+        <p class="subtitle">
+            Pembelajaran dengan pendekatan <strong>Deep Learning</strong> • Konsep & Aplikasi
+        </p>
 
-    <div class="row">
-        <!-- KOLOM KIRI -->
-        <div class="card">
-            <div class="card-title" style="color:#00D2FF;">📸 Ilustrasi</div>
+        <div class="row">
+            <!-- ===== KOLOM KIRI: ILUSTRASI ===== -->
+            <div class="card">
+                <div class="card-title" style="color: #00D2FF;">
+                    <span>📸</span> Ilustrasi
+                </div>
 
-            <div class="upload-box" onclick="document.getElementById('uploadArch').click()">
-                <div id="promptArch">
+                <!-- Upload gambar Archimedes -->
+                <div class="upload-box" onclick="document.getElementById('uploadArch').click()">
                     <i>☁️</i>
                     <p>Upload gambar Archimedes (JPG)</p>
                     <div class="nama-file" id="namaArch">📁 ilustrasi_archimedes.jpg</div>
-                </div>
-                <input type="file" id="uploadArch" accept="image/*">
-            </div>
-
-            <div class="preview-kecil">
-                <img id="imgArch" src="ilustrasi_archimedes.jpg" alt="Archimedes" onerror="this.style.display='none'; document.getElementById('placeholderArch').style.display='block'">
-                <span class="placeholder" id="placeholderArch" style="display:none;">Preview gambar</span>
-            </div>
-
-            <div class="narasi">
-                <h3>💡 Prinsip Archimedes</h3>
-                <p>"Sebuah benda yang dicelupkan sebagian atau seluruhnya ke dalam fluida akan mengalami gaya angkat ke atas."</p>
-                <p>Gaya angkat ini disebut <strong style="color:#00D2FF;">gaya Archimedes</strong>.</p>
-                <span class="rumus">F<sub>A</sub> = ρ<sub>f</sub> · g · V<sub>bf</sub></span>
-                <div class="keterangan">
-                    F<sub>A</sub> = gaya Archimedes (N)<br>
-                    ρ<sub>f</sub> = massa jenis fluida (kg/m³)<br>
-                    g = percepatan gravitasi (m/s²)<br>
-                    V<sub>bf</sub> = volume benda tercelup (m³)
-                </div>
-            </div>
-        </div>
-
-        <!-- KOLOM KANAN -->
-        <div class="card">
-            <div class="card-title" style="color:#FF6584;">📝 Soal & Jawaban</div>
-
-            <!-- UPLOAD SOAL - FIX TOTAL -->
-            <div class="upload-box" onclick="document.getElementById('uploadSoal').click()">
-
-                <!-- PROMPT UPLOAD (HILANG setelah upload) -->
-                <div id="promptSoal">
-                    <i>☁️</i>
-                    <p>Upload soal (JPG)</p>
-                    <div class="nama-file">📁 soal_1.jpg</div>
+                    <input type="file" id="uploadArch" accept="image/*">
                 </div>
 
-                <!-- PREVIEW GAMBAR SOAL (MUNCUL setelah upload) -->
+                <!-- Preview ilustrasi -->
+                <div class="preview-kecil">
+                    <img id="imgArch" src="ilustrasi_archimedes.jpg"
+                    alt="Ilustrasi Archimedes"
+                    onerror="this.style.display='none'; document.getElementById('placeholderArch').style.display='block'">
+                    <span class="placeholder" id="placeholderArch" style="display: none;">
+                        <i class="fas fa-image" style="font-size:20px; display:block; margin-bottom:4px;"></i>
+                        Preview gambar
+                    </span>
+                </div>
+
+                <!-- Narasi Prinsip Archimedes -->
+                <div class="narasi">
+                    <h3>💡 Prinsip Archimedes</h3>
+                    <p>
+                        "Sebuah benda yang dicelupkan sebagian atau seluruhnya ke dalam fluida
+                        akan mengalami gaya angkat ke atas."
+                    </p>
+                    <p>
+                        Gaya angkat ini disebut <span class="highlight">gaya Archimedes</span>.
+                    </p>
+                    <span class="rumus">F<sub>A</sub> = ρ<sub>f</sub> · g · V<sub>bf</sub></span>
+                    <div class="keterangan">
+                        F<sub>A</sub> = gaya Archimedes (N)<br>
+                        ρ<sub>f</sub> = massa jenis fluida (kg/m³)<br>
+                        g = percepatan gravitasi (m/s²)<br>
+                        V<sub>bf</sub> = volume benda tercelup (m³)
+                    </div>
+                    <div class="aplikasi">
+                        <i>✅</i> Kapal laut<br>
+                        <i>✅</i> Kapal selam<br>
+                        <i>✅</i> Balon udara<br>
+                        <i>✅</i> Hidrometer
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== KOLOM KANAN: SOAL & JAWABAN ===== -->
+            <div class="card">
+                <div class="card-title" style="color: #FF6584;">
+                    <span>📝</span> Soal & Jawaban
+                </div>
+
+                <!-- ===== UPLOAD SOAL ===== -->
+                <!-- PROMPT UPLOAD: SEMBUNYIKAN -->
+                <div id="promptSoal" style="display: none;">
+                    <div class="upload-box" onclick="document.getElementById('uploadSoal').click()">
+                        <i>☁️</i>
+                        <p>Upload soal (JPG)</p>
+                        <div class="nama-file">📁 soal_1.jpg</div>
+                        <input type="file" id="uploadSoal" accept="image/*">
+                    </div>
+                </div>
+
+                <!-- PREVIEW GAMBAR SOAL: TAMPILKAN PERMANEN -->
                 <div id="previewSoal">
-                    <img id="imgSoal" src="#" alt="Soal">
+                    <img id="imgSoal" src="soal_1.jpg" alt="Soal Fisika">
                 </div>
 
-                <input type="file" id="uploadSoal" accept="image/*">
+                <!-- ===== OPSI JAWABAN ===== -->
+                <div class="opsi-wrapper">
+                    <span class="label">✅ Pilih jawaban yang paling tepat:</span>
+
+                    <div class="opsi" data-value="A" onclick="pilihOpsi('A')">
+                        <span class="huruf">A</span> X = 175, Y = 200, Z = 225
+                    </div>
+                    <div class="opsi" data-value="B" onclick="pilihOpsi('B')">
+                        <span class="huruf">B</span> X = 175, Y = 200, Z = 200
+                    </div>
+                    <div class="opsi" data-value="C" onclick="pilihOpsi('C')">
+                        <span class="huruf">C</span> X = 200, Y = 200, Z = 200
+                    </div>
+                    <div class="opsi" data-value="D" onclick="pilihOpsi('D')">
+                        <span class="huruf">D</span> X = 150, Y = 200, Z = 200
+                    </div>
+                    <div class="opsi" data-value="E" onclick="pilihOpsi('E')">
+                        <span class="huruf">E</span> X = 150, Y = 175, Z = 225
+                    </div>
+                </div>
+
+                <!-- ===== TOMBOL ===== -->
+                <div class="tombol-group">
+                    <button class="btn-primary" onclick="periksaJawaban()">
+                        ✅ Periksa
+                    </button>
+                    <button class="btn-secondary" onclick="resetJawaban()">
+                        ↻ Reset
+                    </button>
+                </div>
+
+                <!-- ===== HASIL ===== -->
+                <div class="hasil" id="hasil"></div>
             </div>
-
-            <!-- OPSI -->
-            <div class="opsi-wrapper">
-                <span class="label">✅ Pilih jawaban yang paling tepat:</span>
-
-                <div class="opsi" data-value="A" onclick="pilih('A')">
-                    <span class="huruf">A</span> X = 175, Y = 200, Z = 225
-                </div>
-                <div class="opsi" data-value="B" onclick="pilih('B')">
-                    <span class="huruf">B</span> X = 175, Y = 200, Z = 200
-                </div>
-                <div class="opsi" data-value="C" onclick="pilih('C')">
-                    <span class="huruf">C</span> X = 200, Y = 200, Z = 200
-                </div>
-                <div class="opsi" data-value="D" onclick="pilih('D')">
-                    <span class="huruf">D</span> X = 150, Y = 200, Z = 200
-                </div>
-                <div class="opsi" data-value="E" onclick="pilih('E')">
-                    <span class="huruf">E</span> X = 150, Y = 175, Z = 225
-                </div>
-            </div>
-
-            <div class="tombol-group">
-                <button class="btn-primary" onclick="periksa()">✅ Periksa</button>
-                <button class="btn-secondary" onclick="reset()">↻ Reset</button>
-            </div>
-
-            <div class="hasil" id="hasil"></div>
         </div>
     </div>
-</div>
 
-<script>
-    // ============================================================
-    // UPLOAD ARCHIMEDES
-    // ============================================================
-    document.getElementById('uploadArch').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(ev) {
-                const img = document.getElementById('imgArch');
-                img.src = ev.target.result;
-                img.style.display = 'block';
-                document.getElementById('placeholderArch').style.display = 'none';
-                document.getElementById('namaArch').textContent = '📁 ' + file.name;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    // ============================================================
-    // UPLOAD SOAL - FIX ✅
-    // ============================================================
-    document.getElementById('uploadSoal').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(ev) {
-                // 1. SEMBUNYIKAN prompt upload
-                document.getElementById('promptSoal').style.display = 'none';
-
-                // 2. TAMPILKAN gambar di tempat yang SAMA
-                const preview = document.getElementById('previewSoal');
-                preview.style.display = 'block';
-                document.getElementById('imgSoal').src = ev.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    // ============================================================
-    // LOGIKA JAWABAN
-    // ============================================================
-    const KUNCI = 'D';
-    let pilihanSiswa = null;
-
-    function pilih(value) {
-        pilihanSiswa = value;
-        document.querySelectorAll('.opsi').forEach(el => {
-            el.classList.remove('selected');
-            if (el.dataset.value === value) el.classList.add('selected');
+    <script>
+        // ================================================================
+        // 1. UPLOAD GAMBAR ARCHIMEDES (ILUSTRASI)
+        // ================================================================
+        document.getElementById('uploadArch').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.getElementById('imgArch');
+                    img.src = event.target.result;
+                    img.style.display = 'block';
+                    document.getElementById('placeholderArch').style.display = 'none';
+                    document.getElementById('namaArch').textContent = '📁 ' + file.name;
+                };
+                reader.readAsDataURL(file);
+            }
         });
-        const hasil = document.getElementById('hasil');
-        hasil.className = 'hasil';
-        hasil.style.display = 'none';
-    }
 
-    function periksa() {
-        const hasil = document.getElementById('hasil');
-        if (!pilihanSiswa) {
-            hasil.className = 'hasil warning';
-            hasil.innerHTML = '⚠️ Silakan pilih jawaban terlebih dahulu!';
+        // ================================================================
+        // 2. UPLOAD SOAL (TETAP BISA DIGUNAKAN, HANYA DISEMBUNYIKAN)
+        // ================================================================
+        document.getElementById('uploadSoal').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    // Tampilkan gambar yang di-upload (akan menggantikan soal_1.jpg)
+                    document.getElementById('imgSoal').src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // ================================================================
+        // 3. LOGIKA JAWABAN
+        // ================================================================
+        const KUNCI_JAWABAN = 'D';
+        let jawabanDipilih = null;
+
+        function pilihOpsi(value) {
+            jawabanDipilih = value;
+
+            // Highlight pilihan
+            document.querySelectorAll('.opsi').forEach(el => {
+                el.classList.remove('selected');
+                if (el.dataset.value === value) {
+                    el.classList.add('selected');
+                }
+            });
+
+            // Sembunyikan hasil sebelumnya
+            const hasil = document.getElementById('hasil');
+            hasil.className = 'hasil';
+            hasil.style.display = 'none';
+        }
+
+        function periksaJawaban() {
+            const hasil = document.getElementById('hasil');
+
+            if (!jawabanDipilih) {
+                hasil.className = 'hasil warning';
+                hasil.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Silakan pilih jawaban terlebih dahulu!';
+                hasil.style.display = 'block';
+                return;
+            }
+
+            if (jawabanDipilih === KUNCI_JAWABAN) {
+                hasil.className = 'hasil benar';
+                hasil.innerHTML = '<i class="fas fa-check-circle"></i> ✅ Jawaban BENAR! 🎉 Selamat!';
+            } else {
+                hasil.className = 'hasil salah';
+                hasil.innerHTML =
+                    '<i class="fas fa-times-circle"></i> ❌ Jawaban SALAH. Jawaban yang benar adalah <strong>D. X = 150, Y = 200, Z = 200</strong>.';
+            }
+
             hasil.style.display = 'block';
-            return;
         }
-        if (pilihanSiswa === KUNCI) {
-            hasil.className = 'hasil benar';
-            hasil.innerHTML = '✅ Jawaban BENAR! 🎉 Selamat!';
-        } else {
-            hasil.className = 'hasil salah';
-            hasil.innerHTML = '❌ Jawaban SALAH. Jawaban yang benar adalah <strong>D. X = 150, Y = 200, Z = 200</strong>.';
-        }
-        hasil.style.display = 'block';
-    }
 
-    function reset() {
-        pilihanSiswa = null;
-        document.querySelectorAll('.opsi').forEach(el => el.classList.remove('selected'));
-        const hasil = document.getElementById('hasil');
-        hasil.className = 'hasil';
-        hasil.style.display = 'none';
-    }
-</script>
+        function resetJawaban() {
+            jawabanDipilih = null;
+            document.querySelectorAll('.opsi').forEach(el => {
+                el.classList.remove('selected');
+            });
+            const hasil = document.getElementById('hasil');
+            hasil.className = 'hasil';
+            hasil.style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
