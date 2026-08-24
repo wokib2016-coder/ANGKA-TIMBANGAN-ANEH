@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== RESET & DASAR ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -57,7 +56,6 @@
             .header h1 { font-size: 1.3rem; }
         }
 
-        /* ===== KOLOM KIRI ===== */
         .kolom-kiri {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
@@ -128,7 +126,6 @@
         }
         .narasi .aplikasi i { color: #00D2FF; font-size: 0.65rem; margin-right: 4px; }
 
-        /* ===== KOLOM KANAN ===== */
         .kolom-kanan {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
@@ -233,39 +230,45 @@
         .hasil.salah { display: block; background: rgba(255,101,132,0.1); border: 1px solid rgba(255,101,132,0.2); color: #FF6584; }
         .hasil i { margin-right: 6px; }
 
-        /* ===== TOMBOL TOGGLE SIMULASI - DIPERBAIKI UNTUK HP ===== */
+        /* ===== TOMBOL SIMULASI - DIPERKUAT UNTUK HP ===== */
         .toggle-simulasi-wrapper {
             margin-top: 24px;
             text-align: center;
+            padding: 0 4px;
         }
-        .btn-toggle-sim {
-            background: linear-gradient(135deg, rgba(0,210,255,0.15), rgba(108,99,255,0.15));
-            border: 2px solid rgba(0,210,255,0.3);
-            color: #00D2FF;
-            padding: 16px 20px;
-            border-radius: 50px;
+        #btnToggleSim {
+            background: linear-gradient(135deg, #00D2FF, #6C63FF);
+            color: #fff;
+            border: none;
+            padding: 18px 20px;
+            border-radius: 60px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             font-family: 'Poppins', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 14px;
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             margin: 0 auto;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
-            box-shadow: 0 4px 20px rgba(0,210,255,0.1);
+            box-shadow: 0 6px 30px rgba(0,210,255,0.25);
+            min-height: 64px;
+            letter-spacing: 0.5px;
         }
-        .btn-toggle-sim:active {
+        #btnToggleSim:active {
             transform: scale(0.96);
-            background: rgba(0,210,255,0.25);
+            box-shadow: 0 3px 15px rgba(0,210,255,0.15);
         }
-        .btn-toggle-sim i {
-            font-size: 1.4rem;
+        #btnToggleSim i {
+            font-size: 1.6rem;
+        }
+        #btnToggleSim.tutup {
+            background: linear-gradient(135deg, #FF6584, #6C63FF);
         }
 
         /* ===== SIMULASI ===== */
@@ -360,7 +363,7 @@
             #simContainer { height: 400px; }
             .preview-soal img { max-height: 700px; }
             .preview-ilustrasi img { max-height: 200px; }
-            .btn-toggle-sim { font-size: 1.1rem; padding: 14px 28px; }
+            #btnToggleSim { font-size: 1.2rem; padding: 16px 28px; min-height: 56px; }
         }
         @media (min-width: 1024px) {
             .row { grid-template-columns: 20% 80%; gap: 25px; }
@@ -373,7 +376,8 @@
             .tombol-opsi button { font-size: 0.7rem; padding: 10px 12px; min-width: 90px; }
             .preview-soal img { max-height: 300px; }
             .preview-ilustrasi img { max-height: 100px; }
-            .btn-toggle-sim { font-size: 0.85rem; padding: 14px 16px; }
+            #btnToggleSim { font-size: 0.9rem; padding: 16px 14px; min-height: 56px; gap: 10px; }
+            #btnToggleSim i { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -454,9 +458,9 @@
         </div>
     </div>
 
-    <!-- ===== TOMBOL SIMULASI - DIPERBAIKI UNTUK HP ===== -->
+    <!-- ===== TOMBOL SIMULASI - DIPERKUAT UNTUK HP ===== -->
     <div class="toggle-simulasi-wrapper">
-        <button class="btn-toggle-sim" onclick="toggleSimulasi()" id="btnToggleSim">
+        <button id="btnToggleSim" onclick="toggleSimulasi()">
             <i class="fas fa-flask" id="toggleIcon"></i>
             <span id="toggleText">▶ Buka Simulasi Percobaan Apel</span>
         </button>
@@ -485,7 +489,7 @@
 
 <script>
     // ================================================================
-    // TOGGLE SIMULASI - DIPERBAIKI UNTUK HP
+    // TOGGLE SIMULASI - DIPERKUAT UNTUK HP
     // ================================================================
     function toggleSimulasi() {
         const section = document.getElementById('simulasiSection');
@@ -497,16 +501,35 @@
             section.style.display = 'none';
             text.textContent = '▶ Buka Simulasi Percobaan Apel';
             icon.className = 'fas fa-flask';
-            btn.style.background = 'linear-gradient(135deg, rgba(0,210,255,0.15), rgba(108,99,255,0.15))';
+            btn.classList.remove('tutup');
+            btn.style.background = 'linear-gradient(135deg, #00D2FF, #6C63FF)';
         } else {
             section.style.display = 'block';
             text.textContent = '▲ Tutup Simulasi Percobaan Apel';
             icon.className = 'fas fa-chevron-up';
-            btn.style.background = 'linear-gradient(135deg, rgba(0,210,255,0.25), rgba(108,99,255,0.25))';
-            // Trigger resize untuk canvas
-            setTimeout(() => window.dispatchEvent(new Event('resize')), 100);
+            btn.classList.add('tutup');
+            btn.style.background = 'linear-gradient(135deg, #FF6584, #6C63FF)';
+            // Paksa resize canvas setelah animasi selesai
+            setTimeout(function() {
+                window.dispatchEvent(new Event('resize'));
+            }, 200);
         }
     }
+
+    // Event tambahan untuk HP: touchstart + click
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('btnToggleSim');
+        // Hapus event click bawaan, kita pake manual
+        btn.onclick = function(e) {
+            e.preventDefault();
+            toggleSimulasi();
+        };
+        // Untuk HP, touchstart lebih responsif
+        btn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            toggleSimulasi();
+        }, { passive: false });
+    });
 
     // ================================================================
     // LOGIKA SOAL
@@ -561,7 +584,7 @@
     }
 
     // ================================================================
-    // SIMULASI KANVAS (dipertahankan, dengan resize otomatis)
+    // SIMULASI KANVAS
     // ================================================================
     (function() {
         const canvas = document.getElementById('simCanvas');
@@ -582,7 +605,6 @@
         const btnSlow = document.getElementById('btnSlow');
         const btnFast = document.getElementById('btnFast');
 
-        // Fungsi-fungsi gambar (sama seperti sebelumnya)
         function lighten(col, p) {
             const n = parseInt(col.replace('#',''),16);
             const a = Math.round(2.55*p);
