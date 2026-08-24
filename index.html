@@ -71,74 +71,24 @@
             align-items: center;
             gap: 8px;
         }
-        .upload-box {
-            border: 2px dashed rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 16px;
+        .preview-ilustrasi {
             text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-            min-height: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.01);
+            margin-bottom: 14px;
         }
-        .upload-box:hover {
-            border-color: rgba(108,99,255,0.4);
-            background: rgba(108,99,255,0.03);
-        }
-        .upload-box input[type="file"] { display: none; }
-        .upload-box i {
-            font-size: 28px;
-            color: rgba(255,255,255,0.1);
-            display: block;
-            margin-bottom: 2px;
-        }
-        .upload-box p {
-            color: rgba(255,255,255,0.3);
-            font-size: 0.8rem;
-            margin: 2px 0;
-        }
-        .upload-box .nama-file {
-            color: #00D2FF;
-            font-weight: 600;
-            font-size: 0.75rem;
-        }
-        .preview-kecil {
-            margin-top: 10px;
-            text-align: center;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .preview-kecil img {
+        .preview-ilustrasi img {
             max-width: 100%;
-            max-height: 130px;
-            border-radius: 6px;
-            display: block;
+            max-height: 200px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .preview-kecil .placeholder {
-            color: rgba(255,255,255,0.12);
-            font-size: 0.7rem;
-        }
-        /* PREVIEW SOAL */
-        #previewSoal {
-            display: block;
-            width: 100%;
+        .preview-soal {
             text-align: center;
-            margin-top: 6px;
+            margin-bottom: 14px;
         }
-        #previewSoal img {
+        .preview-soal img {
             max-width: 100%;
             max-height: 450px;
-            width: auto;
-            height: auto;
             border-radius: 8px;
-            display: block;
-            margin: 0 auto;
             border: 1px solid rgba(255,255,255,0.05);
         }
         .narasi {
@@ -307,24 +257,9 @@
         <div class="card">
             <div class="card-title" style="color: #00D2FF;"><span>📸</span> Ilustrasi</div>
 
-            <!-- PROMPT UPLOAD ARCHIMEDES: SEMBUNYIKAN -->
-            <div id="promptArch" style="display: none;">
-                <div class="upload-box" onclick="document.getElementById('uploadArch').click()">
-                    <i>☁️</i>
-                    <p>Upload gambar Archimedes (JPG)</p>
-                    <div class="nama-file">📁 ilustrasi_archimedes.jpg</div>
-                    <input type="file" id="uploadArch" accept="image/*">
-                </div>
-            </div>
-
-            <!-- PREVIEW ILUSTRASI: TAMPILKAN PERMANEN -->
-            <div class="preview-kecil" id="previewArch">
-                <img id="imgArch" src="ilustrasi_archimedes.jpg" alt="Ilustrasi Archimedes"
-                onerror="this.style.display='none'; document.getElementById('placeholderArch').style.display='block'">
-                <span class="placeholder" id="placeholderArch" style="display: none;">
-                    <i class="fas fa-image" style="font-size:20px; display:block; margin-bottom:4px;"></i>
-                    Preview gambar
-                </span>
+            <!-- GAMBAR ILUSTRASI LANGSUNG TAMPIL -->
+            <div class="preview-ilustrasi">
+                <img src="ilustrasi_archimedes.jpg" alt="Ilustrasi Archimedes">
             </div>
 
             <!-- Narasi -->
@@ -352,19 +287,9 @@
         <div class="card">
             <div class="card-title" style="color: #FF6584;"><span>📝</span> Soal & Jawaban</div>
 
-            <!-- PROMPT UPLOAD SOAL: SEMBUNYIKAN -->
-            <div id="promptSoal" style="display: none;">
-                <div class="upload-box" onclick="document.getElementById('uploadSoal').click()">
-                    <i>☁️</i>
-                    <p>Upload soal (JPG)</p>
-                    <div class="nama-file">📁 soal_1.jpg</div>
-                    <input type="file" id="uploadSoal" accept="image/*">
-                </div>
-            </div>
-
-            <!-- PREVIEW SOAL: TAMPILKAN PERMANEN -->
-            <div id="previewSoal">
-                <img id="imgSoal" src="soal_1.jpg" alt="Soal Fisika">
+            <!-- GAMBAR SOAL LANGSUNG TAMPIL -->
+            <div class="preview-soal">
+                <img src="soal_1.jpg" alt="Soal Fisika">
             </div>
 
             <!-- OPSI JAWABAN -->
@@ -398,36 +323,6 @@
 </div>
 
 <script>
-    // ================================================================
-    // UPLOAD ILUSTRASI (TETAP BERFUNGSI, TAPI DISEMBUNYIKAN)
-    // ================================================================
-    document.getElementById('uploadArch').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('imgArch').src = event.target.result;
-                document.getElementById('imgArch').style.display = 'block';
-                document.getElementById('placeholderArch').style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    // ================================================================
-    // UPLOAD SOAL (TETAP BERFUNGSI, TAPI DISEMBUNYIKAN)
-    // ================================================================
-    document.getElementById('uploadSoal').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('imgSoal').src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
     // ================================================================
     // LOGIKA JAWABAN
     // ================================================================
