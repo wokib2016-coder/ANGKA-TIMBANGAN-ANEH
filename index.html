@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== RESET DAN GAYA DASAR (SAMA SEPERTI SEBELUMNYA) ===== */
+        /* ===== RESET ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -280,7 +280,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Container simulasi dengan ukuran fleksibel dan overflow untuk zoom */
+        /* Container simulasi dengan overflow untuk zoom */
         #simContainerWrapper {
             width: 100%;
             overflow: auto;
@@ -292,8 +292,8 @@
         }
         #simContainer {
             width: 100%;
-            height: 400px; /* Ukuran dasar lebih besar */
-            min-width: 600px; /* Lebar minimum agar konten tidak terlalu padat */
+            height: 450px;
+            min-width: 700px;
             display: flex;
             flex-direction: column;
             background: radial-gradient(ellipse at 50% 0%, #1c3545, #0b1720);
@@ -305,16 +305,10 @@
             transition: transform 0.2s ease;
         }
         @media (max-width: 768px) {
-            #simContainer { 
-                height: 450px; 
-                min-width: 700px;
-            }
+            #simContainer { height: 450px; min-width: 750px; }
         }
         @media (max-width: 480px) {
-            #simContainer { 
-                height: 500px; 
-                min-width: 800px;
-            }
+            #simContainer { height: 480px; min-width: 850px; }
         }
 
         #simHeader {
@@ -340,6 +334,7 @@
         }
         #simCanvas { display: block; width: 100%; height: 100%; background: linear-gradient(180deg, #cce4ef, #a6c2d3); }
 
+        /* ===== KONTROL SIMULASI + ZOOM ===== */
         #controls {
             display: flex;
             justify-content: center;
@@ -366,15 +361,30 @@
         #controls button:active { transform: scale(0.95); }
         #controls button.active { background: rgba(75,192,217,0.25); border-color: rgba(75,192,217,0.4); color: #7fe4ff; }
         #controls button.primary { background: rgba(75,192,217,0.18); border-color: rgba(75,192,217,0.3); }
+
+        /* ===== TOMBOL ZOOM - DIPASTIKAN MUNCUL ===== */
         #controls button.zoom-btn {
-            background: rgba(255,215,0,0.15);
-            border-color: rgba(255,215,0,0.3);
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #FFD93D;
             color: #FFD93D;
-            font-size: 1.2rem;
-            padding: 8px 14px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 8px 16px;
             min-width: 50px;
+            border-radius: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
         }
-        #controls button.zoom-btn:active { background: rgba(255,215,0,0.3); }
+        #controls button.zoom-btn:active {
+            background: rgba(255, 215, 0, 0.4);
+            transform: scale(0.95);
+        }
+        #controls button.zoom-btn#zoomResetBtn {
+            font-size: 0.9rem;
+            padding: 8px 14px;
+        }
 
         #simFooter {
             text-align: center;
@@ -389,14 +399,14 @@
             body { padding: 20px; }
             .container { padding: 28px; }
             .header h1 { font-size: 2rem; }
-            #simContainer { height: 450px; min-width: 800px; }
+            #simContainer { height: 450px; min-width: 850px; }
             .preview-soal img { max-height: 700px; }
             .preview-ilustrasi img { max-height: 200px; }
             #btnToggleSim { font-size: 1.2rem; padding: 16px 28px; min-height: 56px; }
         }
         @media (min-width: 1024px) {
             .row { grid-template-columns: 20% 80%; gap: 25px; }
-            #simContainer { height: 500px; min-width: 900px; }
+            #simContainer { height: 500px; min-width: 950px; }
         }
         @media (max-width: 480px) {
             .container { padding: 10px; }
@@ -410,7 +420,7 @@
             #btnToggleSim i { font-size: 1.3rem; }
             #simContainer { height: 480px; min-width: 850px; }
             #controls button { font-size: 10px; padding: 6px 12px; min-height: 36px; }
-            #controls button.zoom-btn { font-size: 1rem; padding: 6px 10px; min-width: 40px; }
+            #controls button.zoom-btn { font-size: 1rem; padding: 6px 12px; min-width: 40px; min-height: 36px; }
         }
     </style>
 </head>
@@ -516,10 +526,11 @@
                     <button id="btnResetSim">⟳ Reset</button>
                     <button class="active" id="btnSlow">🐢 Lambat</button>
                     <button id="btnFast">🐇 Cepat</button>
-                    <!-- TOMBOL ZOOM -->
-                    <button class="zoom-btn" id="zoomInBtn" title="Perbesar tampilan">🔍+</button>
-                    <button class="zoom-btn" id="zoomOutBtn" title="Perkecil tampilan">🔍−</button>
-                    <button class="zoom-btn" id="zoomResetBtn" title="Reset zoom">⟲</button>
+                    
+                    <!-- ===== TOMBOL ZOOM - DIPASTIKAN MUNCUL ===== -->
+                    <button class="zoom-btn" id="zoomInBtn" title="Perbesar">🔍+</button>
+                    <button class="zoom-btn" id="zoomOutBtn" title="Perkecil">🔍−</button>
+                    <button class="zoom-btn" id="zoomResetBtn" title="Reset Zoom">⟲</button>
                 </div>
                 <div id="simFooter">Hukum Archimedes · 1. Terapung · 2. Melayang · 3. Tenggelam</div>
             </div>
@@ -529,7 +540,7 @@
 
 <script>
     // ================================================================
-    // 1. TOGGLE SIMULASI (DIPERKUAT UNTUK HP)
+    // 1. TOGGLE SIMULASI
     // ================================================================
     function toggleSimulasi() {
         const section = document.getElementById('simulasiSection');
@@ -557,7 +568,7 @@
         }
     }
 
-    // Event untuk HP: touchstart + click
+    // Event untuk HP
     document.addEventListener('DOMContentLoaded', function() {
         const btn = document.getElementById('btnToggleSim');
         btn.onclick = function(e) {
@@ -623,7 +634,7 @@
     }
 
     // ================================================================
-    // 3. SIMULASI KANVAS DENGAN FITUR ZOOM
+    // 3. SIMULASI KANVAS DENGAN ZOOM
     // ================================================================
     (function() {
         const canvas = document.getElementById('simCanvas');
@@ -631,7 +642,7 @@
         const container = document.getElementById('simContainer');
         let W, H;
 
-        // State zoom
+        // ===== ZOOM STATE =====
         let currentZoom = 1;
         const MIN_ZOOM = 0.5;
         const MAX_ZOOM = 2.5;
@@ -643,39 +654,38 @@
             canvas.height = rect.height;
             W = canvas.width;
             H = canvas.height;
-            // Gambar ulang setelah resize
             draw();
         }
 
-        // Fungsi zoom
+        // ===== FUNGSI ZOOM =====
         function applyZoom(scale) {
             currentZoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, scale));
-            container.style.transform = `scale(${currentZoom})`;
-            // Sesuaikan wrapper agar scroll tetap bisa
+            container.style.transform = 'scale(' + currentZoom + ')';
+            container.style.transformOrigin = 'top left';
+            // Pastikan wrapper bisa di-scroll
             const wrapper = document.getElementById('simContainerWrapper');
-            if (currentZoom > 1) {
-                wrapper.style.overflow = 'auto';
-            } else {
-                wrapper.style.overflow = 'auto';
-            }
+            wrapper.style.overflow = 'auto';
         }
 
         function resetZoom() {
             applyZoom(1);
         }
 
-        // Event tombol zoom
-        document.getElementById('zoomInBtn').addEventListener('click', function() {
+        // ===== EVENT TOMBOL ZOOM =====
+        document.getElementById('zoomInBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
             applyZoom(currentZoom + ZOOM_STEP);
         });
-        document.getElementById('zoomOutBtn').addEventListener('click', function() {
+        document.getElementById('zoomOutBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
             applyZoom(currentZoom - ZOOM_STEP);
         });
-        document.getElementById('zoomResetBtn').addEventListener('click', function() {
+        document.getElementById('zoomResetBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
             resetZoom();
         });
 
-        // ===== FUNGSI GAMBAR (SAMA SEPERTI SEBELUMNYA) =====
+        // ===== FUNGSI GAMBAR (SAMA) =====
         const state = { phase: 'awal', progress: 0, speed: 0.0035, time: 0 };
         const btnStart = document.getElementById('btnStart');
         const btnResetSim = document.getElementById('btnResetSim');
