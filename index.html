@@ -2,11 +2,12 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Prinsip Archimedes - Deep Learning</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ===== RESET & DASAR ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -16,24 +17,24 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 20px;
+            padding: 12px;
         }
         .container {
             max-width: 1400px;
             width: 100%;
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 24px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 16px;
             backdrop-filter: blur(20px);
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .header h1 {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 900;
             background: linear-gradient(135deg, #00D2FF, #6C63FF, #FF6584);
             -webkit-background-clip: text;
@@ -42,31 +43,35 @@
         }
         .header p {
             color: rgba(255,255,255,0.4);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin-top: 4px;
         }
         .row {
             display: grid;
-            grid-template-columns: 20% 80%;
-            gap: 25px;
+            grid-template-columns: 1fr 2fr;
+            gap: 16px;
         }
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
             .row { grid-template-columns: 1fr; }
+            .container { padding: 12px; }
+            .header h1 { font-size: 1.3rem; }
         }
+
+        /* ===== KOLOM KIRI ===== */
         .kolom-kiri {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 12px;
-            padding: 14px;
+            padding: 12px;
         }
         .kolom-kiri h2 {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: #00D2FF;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
         .preview-ilustrasi {
             text-align: center;
@@ -74,7 +79,7 @@
         }
         .preview-ilustrasi img {
             max-width: 100%;
-            max-height: 200px;
+            max-height: 150px;
             border-radius: 6px;
             border: 1px solid rgba(255,255,255,0.05);
         }
@@ -85,20 +90,20 @@
             border-left: 3px solid #6C63FF;
         }
         .narasi h3 {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #FFD93D;
             margin-bottom: 6px;
             font-weight: 700;
         }
         .narasi p {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             line-height: 1.7;
             color: rgba(255,255,255,0.75);
             margin-bottom: 6px;
         }
         .narasi .highlight { color: #00D2FF; font-weight: 600; }
         .narasi .rumus {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #FFD93D;
             font-weight: 600;
             text-align: center;
@@ -116,34 +121,36 @@
             margin-bottom: 6px;
         }
         .narasi .aplikasi {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             color: rgba(255,255,255,0.5);
             margin-top: 4px;
             line-height: 1.6;
         }
-        .narasi .aplikasi i { color: #00D2FF; font-size: 0.6rem; margin-right: 4px; }
+        .narasi .aplikasi i { color: #00D2FF; font-size: 0.65rem; margin-right: 4px; }
+
+        /* ===== KOLOM KANAN ===== */
         .kolom-kanan {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 25px;
+            border-radius: 14px;
+            padding: 16px;
         }
         .kolom-kanan h2 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #FF6584;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .preview-soal {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .preview-soal img {
             max-width: 100%;
-            max-height: 500px;
+            max-height: 400px;
             border-radius: 8px;
             border: 1px solid rgba(255,255,255,0.05);
         }
@@ -153,7 +160,7 @@
             border-top: 1px solid rgba(255,255,255,0.08);
         }
         .opsi-container .label {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: rgba(255,255,255,0.4);
             margin-bottom: 8px;
             display: block;
@@ -161,128 +168,152 @@
         }
         .pilihan {
             cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 2px solid rgba(255,255,255,0.05);
-            margin-bottom: 4px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.06);
+            margin-bottom: 6px;
             transition: all 0.3s;
             background: rgba(255,255,255,0.02);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             width: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
-        .pilihan:hover { border-color: rgba(108,99,255,0.3); background: rgba(108,99,255,0.05); }
-        .pilihan.selected { border-color: #6C63FF; background: rgba(108,99,255,0.1); }
+        .pilihan:active { transform: scale(0.98); }
+        .pilihan:hover { border-color: rgba(108,99,255,0.25); background: rgba(108,99,255,0.04); }
+        .pilihan.selected { border-color: #6C63FF; background: rgba(108,99,255,0.12); }
         .pilihan .letter {
-            width: 22px; height: 22px; border-radius: 50%;
-            background: rgba(255,255,255,0.05);
+            width: 28px; height: 28px; border-radius: 50%;
+            background: rgba(255,255,255,0.06);
             display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.6rem; flex-shrink: 0;
+            font-weight: 700; font-size: 0.7rem; flex-shrink: 0;
         }
         .pilihan.selected .letter { background: #6C63FF; }
-        .pilihan .text { font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+        .pilihan .text { font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.3; }
         .pilihan input { display: none; }
         .tombol-opsi {
             display: flex;
             gap: 10px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
         .tombol-opsi button {
             flex: 1;
-            padding: 8px 12px;
+            min-width: 100px;
+            padding: 12px 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.3s;
             font-family: 'Poppins', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         .tombol-opsi .btn-primary { background: linear-gradient(135deg, #6C63FF, #FF6584); color: #fff; }
-        .tombol-opsi .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(108,99,255,0.3); }
-        .tombol-opsi .btn-secondary { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
-        .tombol-opsi .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+        .tombol-opsi .btn-primary:active { transform: scale(0.96); }
+        .tombol-opsi .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+        .tombol-opsi .btn-secondary:active { transform: scale(0.96); }
         .hasil {
-            margin-top: 8px;
-            padding: 8px 12px;
-            border-radius: 8px;
+            margin-top: 10px;
+            padding: 12px 16px;
+            border-radius: 10px;
             display: none;
             font-weight: 600;
             text-align: center;
             font-size: 0.8rem;
+            line-height: 1.5;
         }
         .hasil.benar { display: block; background: rgba(0,210,255,0.1); border: 1px solid rgba(0,210,255,0.2); color: #00D2FF; }
         .hasil.salah { display: block; background: rgba(255,101,132,0.1); border: 1px solid rgba(255,101,132,0.2); color: #FF6584; }
         .hasil i { margin-right: 6px; }
+
+        /* ===== TOMBOL TOGGLE SIMULASI - DIPERBAIKI UNTUK HP ===== */
         .toggle-simulasi-wrapper {
-            margin-top: 30px;
+            margin-top: 24px;
             text-align: center;
         }
         .btn-toggle-sim {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: linear-gradient(135deg, rgba(0,210,255,0.15), rgba(108,99,255,0.15));
+            border: 2px solid rgba(0,210,255,0.3);
             color: #00D2FF;
-            padding: 12px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            padding: 16px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            box-shadow: 0 4px 20px rgba(0,210,255,0.1);
         }
-        .btn-toggle-sim:hover {
-            background: rgba(0,210,255,0.1);
-            border-color: rgba(0,210,255,0.3);
-            transform: translateY(-2px);
+        .btn-toggle-sim:active {
+            transform: scale(0.96);
+            background: rgba(0,210,255,0.25);
         }
+        .btn-toggle-sim i {
+            font-size: 1.4rem;
+        }
+
+        /* ===== SIMULASI ===== */
         .simulasi-section {
             display: none;
-            margin-top: 20px;
-            padding-top: 25px;
+            margin-top: 16px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.08);
             background: #0f191f;
-            border-radius: 20px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 12px;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
             animation: fadeIn 0.4s ease forwards;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(-8px); }
             to { opacity: 1; transform: translateY(0); }
         }
         #simContainer {
             width: 100%;
-            height: 380px;
+            height: 340px;
             display: flex;
             flex-direction: column;
             background: radial-gradient(ellipse at 50% 0%, #1c3545, #0b1720);
-            border-radius: 14px;
-            padding: 8px 14px 10px;
+            border-radius: 12px;
+            padding: 6px 10px 8px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 480px) {
+            #simContainer { height: 280px; }
         }
         #simHeader {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 4px 6px;
+            padding: 0 2px 4px;
             flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: 4px;
         }
-        #simHeader h3 { color: #f0f6fc; font-size: 15px; font-weight: 700; }
+        #simHeader h3 { color: #f0f6fc; font-size: 13px; font-weight: 700; }
         #simHeader h3 span { color: #4bc0d9; }
-        #simHeader .info { color: #9ab8cc; font-size: 11px; background: rgba(255,255,255,0.06); padding: 3px 12px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.08); }
+        #simHeader .info { color: #9ab8cc; font-size: 10px; background: rgba(255,255,255,0.06); padding: 2px 10px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.08); }
         #canvasWrap {
             flex: 1;
             min-height: 0;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
             background: #a2bed0;
             box-shadow: inset 0 0 30px rgba(0,0,0,0.12);
@@ -291,8 +322,8 @@
         #controls {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            padding: 10px 0 2px;
+            gap: 6px;
+            padding: 8px 0 2px;
             flex-shrink: 0;
             flex-wrap: wrap;
         }
@@ -301,30 +332,48 @@
             border: 1px solid rgba(255,255,255,0.12);
             color: #e2edf5;
             font-weight: 600;
-            padding: 6px 18px;
+            padding: 8px 16px;
             border-radius: 40px;
             font-size: 11px;
             cursor: pointer;
             transition: all 0.2s ease;
             font-family: inherit;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 40px;
         }
-        #controls button:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+        #controls button:active { transform: scale(0.95); }
         #controls button.active { background: rgba(75,192,217,0.25); border-color: rgba(75,192,217,0.4); color: #7fe4ff; }
         #controls button.primary { background: rgba(75,192,217,0.18); border-color: rgba(75,192,217,0.3); }
         #simFooter {
             text-align: center;
-            color: rgba(255,255,255,0.3);
-            font-size: 10px;
-            padding-top: 4px;
+            color: rgba(255,255,255,0.25);
+            font-size: 9px;
+            padding-top: 3px;
         }
-        @media (max-width: 600px) {
-            .container { padding: 15px; }
-            .tombol-opsi { flex-direction: column; }
-            .header h1 { font-size: 1.4rem; }
-            .pilihan .text { white-space: normal; font-size: 0.8rem; }
-            #simContainer { height: 300px; }
-            .preview-soal img { max-height: 350px; }
-            .preview-ilustrasi img { max-height: 120px; }
+
+        @media (min-width: 768px) {
+            .row { grid-template-columns: 28% 72%; gap: 20px; }
+            body { padding: 20px; }
+            .container { padding: 28px; }
+            .header h1 { font-size: 2rem; }
+            #simContainer { height: 400px; }
+            .preview-soal img { max-height: 700px; }
+            .preview-ilustrasi img { max-height: 200px; }
+            .btn-toggle-sim { font-size: 1.1rem; padding: 14px 28px; }
+        }
+        @media (min-width: 1024px) {
+            .row { grid-template-columns: 20% 80%; gap: 25px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 10px; }
+            .header h1 { font-size: 1.2rem; }
+            .pilihan { padding: 10px 12px; }
+            .pilihan .text { font-size: 0.78rem; }
+            .tombol-opsi button { font-size: 0.7rem; padding: 10px 12px; min-width: 90px; }
+            .preview-soal img { max-height: 300px; }
+            .preview-ilustrasi img { max-height: 100px; }
+            .btn-toggle-sim { font-size: 0.85rem; padding: 14px 16px; }
         }
     </style>
 </head>
@@ -337,6 +386,7 @@
     </div>
 
     <div class="row">
+        <!-- KOLOM KIRI -->
         <div class="kolom-kiri">
             <h2><i class="fas fa-image"></i> Ilustrasi</h2>
             <div class="preview-ilustrasi">
@@ -362,6 +412,7 @@
             </div>
         </div>
 
+        <!-- KOLOM KANAN -->
         <div class="kolom-kanan">
             <h2><i class="fas fa-pencil-alt"></i> Soal & Jawaban</h2>
             <div class="preview-soal">
@@ -396,23 +447,22 @@
                 </div>
             </div>
             <div class="tombol-opsi">
-                <button class="btn-primary" onclick="cekJawaban()">
-                    <i class="fas fa-check"></i> Periksa Jawaban
-                </button>
-                <button class="btn-secondary" onclick="resetJawaban()">
-                    <i class="fas fa-undo"></i> Reset
-                </button>
+                <button class="btn-primary" onclick="cekJawaban()"><i class="fas fa-check"></i> Periksa</button>
+                <button class="btn-secondary" onclick="resetJawaban()"><i class="fas fa-undo"></i> Reset</button>
             </div>
             <div class="hasil" id="hasil"></div>
         </div>
     </div>
 
+    <!-- ===== TOMBOL SIMULASI - DIPERBAIKI UNTUK HP ===== -->
     <div class="toggle-simulasi-wrapper">
-        <button class="btn-toggle-sim" onclick="toggleSimulasi()">
-            <i class="fas fa-flask" id="toggleIcon"></i> <span id="toggleText">Buka Simulasi Percobaan Apel</span>
+        <button class="btn-toggle-sim" onclick="toggleSimulasi()" id="btnToggleSim">
+            <i class="fas fa-flask" id="toggleIcon"></i>
+            <span id="toggleText">▶ Buka Simulasi Percobaan Apel</span>
         </button>
     </div>
 
+    <!-- ===== SIMULASI ===== -->
     <div class="simulasi-section" id="simulasiSection">
         <div id="simContainer">
             <div id="simHeader">
@@ -423,8 +473,8 @@
                 <canvas id="simCanvas"></canvas>
             </div>
             <div id="controls">
-                <button class="primary" id="btnStart">▶ Mulai Percobaan</button>
-                <button id="btnResetSim">⟳ Reset Simulasi</button>
+                <button class="primary" id="btnStart">▶ Mulai</button>
+                <button id="btnResetSim">⟳ Reset</button>
                 <button class="active" id="btnSlow">🐢 Lambat</button>
                 <button id="btnFast">🐇 Cepat</button>
             </div>
@@ -434,22 +484,33 @@
 </div>
 
 <script>
+    // ================================================================
+    // TOGGLE SIMULASI - DIPERBAIKI UNTUK HP
+    // ================================================================
     function toggleSimulasi() {
         const section = document.getElementById('simulasiSection');
         const text = document.getElementById('toggleText');
         const icon = document.getElementById('toggleIcon');
+        const btn = document.getElementById('btnToggleSim');
+
         if (section.style.display === 'block') {
             section.style.display = 'none';
-            text.textContent = 'Buka Simulasi Percobaan Apel';
+            text.textContent = '▶ Buka Simulasi Percobaan Apel';
             icon.className = 'fas fa-flask';
+            btn.style.background = 'linear-gradient(135deg, rgba(0,210,255,0.15), rgba(108,99,255,0.15))';
         } else {
             section.style.display = 'block';
-            text.textContent = 'Tutup Simulasi Percobaan Apel';
+            text.textContent = '▲ Tutup Simulasi Percobaan Apel';
             icon.className = 'fas fa-chevron-up';
-            window.dispatchEvent(new Event('resize'));
+            btn.style.background = 'linear-gradient(135deg, rgba(0,210,255,0.25), rgba(108,99,255,0.25))';
+            // Trigger resize untuk canvas
+            setTimeout(() => window.dispatchEvent(new Event('resize')), 100);
         }
     }
 
+    // ================================================================
+    // LOGIKA SOAL
+    // ================================================================
     const KUNCI_JAWABAN = 'D';
     let jawabanDipilih = null;
 
@@ -480,10 +541,10 @@
         }
         if (jawabanDipilih === KUNCI_JAWABAN) {
             hasil.className = 'hasil benar';
-            hasil.innerHTML = '<i class="fas fa-check-circle"></i> ✅ Jawaban Anda BENAR! Kamu hebat! 🎉';
+            hasil.innerHTML = '<i class="fas fa-check-circle"></i> ✅ Jawaban BENAR! 🎉';
         } else {
             hasil.className = 'hasil salah';
-            hasil.innerHTML = '<i class="fas fa-times-circle"></i> ❌ Jawaban Anda SALAH. Jawaban yang benar adalah <strong>D. X = 150, Y = 200, Z = 200</strong>.';
+            hasil.innerHTML = '<i class="fas fa-times-circle"></i> ❌ Salah. Jawaban benar: <strong>D. X = 150, Y = 200, Z = 200</strong>';
         }
         hasil.style.display = 'block';
     }
@@ -499,7 +560,9 @@
         hasil.style.display = 'none';
     }
 
-    // ===== SIMULASI KANVAS =====
+    // ================================================================
+    // SIMULASI KANVAS (dipertahankan, dengan resize otomatis)
+    // ================================================================
     (function() {
         const canvas = document.getElementById('simCanvas');
         const ctx = canvas.getContext('2d');
@@ -519,6 +582,7 @@
         const btnSlow = document.getElementById('btnSlow');
         const btnFast = document.getElementById('btnFast');
 
+        // Fungsi-fungsi gambar (sama seperti sebelumnya)
         function lighten(col, p) {
             const n = parseInt(col.replace('#',''),16);
             const a = Math.round(2.55*p);
@@ -845,7 +909,7 @@
         function resetSim() {
             state.phase = 'awal';
             state.progress = 0;
-            btnStart.textContent = '▶ Mulai Percobaan';
+            btnStart.textContent = '▶ Mulai';
             btnStart.classList.remove('active');
         }
 
