@@ -4,269 +4,388 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prinsip Archimedes - Deep Learning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ===== RESET ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: #0a0a1a;
             color: #fff;
-            padding: 16px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            padding: 20px;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1400px;
             width: 100%;
-            margin: 0 auto;
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-        h1 {
+        .header {
             text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
             font-size: 2rem;
             font-weight: 900;
             background: linear-gradient(135deg, #00D2FF, #6C63FF, #FF6584);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 4px;
-            letter-spacing: 1px;
         }
-        .subtitle {
-            text-align: center;
-            color: rgba(255,255,255,0.3);
-            font-size: 0.85rem;
-            margin-bottom: 24px;
-            font-weight: 400;
+        .header p {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.9rem;
+            margin-top: 4px;
         }
-        .subtitle strong { color: rgba(255,255,255,0.5); }
+
+        /* ===== KOLOM ===== */
         .row {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 24px;
+            grid-template-columns: 20% 80%;
+            gap: 25px;
         }
-        @media (max-width: 768px) {
-            .row { grid-template-columns: 1fr; gap: 20px; }
-            h1 { font-size: 1.5rem; }
-            .container { padding: 16px; }
+        @media (max-width: 992px) {
+            .row { grid-template-columns: 1fr; }
         }
-        .card {
+
+        /* ===== KOLOM KIRI ===== */
+        .kolom-kiri {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 14px;
-            padding: 18px;
-            transition: 0.3s;
+            border-radius: 12px;
+            padding: 14px;
         }
-        .card-title {
-            font-size: 1rem;
+        .kolom-kiri h2 {
+            font-size: 0.8rem;
             font-weight: 700;
-            margin-bottom: 14px;
+            color: #00D2FF;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
         }
+
+        /* Preview Ilustrasi - LANGSUNG TAMPIL */
         .preview-ilustrasi {
             text-align: center;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
         .preview-ilustrasi img {
             max-width: 100%;
-            max-height: 200px;
-            border-radius: 8px;
+            max-height: 150px;
+            border-radius: 6px;
             border: 1px solid rgba(255,255,255,0.05);
         }
-        .preview-soal {
-            text-align: center;
-            margin-bottom: 14px;
-        }
-        .preview-soal img {
-            max-width: 100%;
-            max-height: 450px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+
+        /* ===== NARASI ===== */
         .narasi {
-            margin-top: 14px;
-            padding: 14px 16px;
-            border-left: 3px solid #6C63FF;
             background: rgba(255,255,255,0.02);
-            border-radius: 4px;
+            border-radius: 8px;
+            padding: 10px 12px;
+            border-left: 3px solid #6C63FF;
         }
         .narasi h3 {
+            font-size: 0.8rem;
             color: #FFD93D;
-            font-size: 0.9rem;
             margin-bottom: 6px;
             font-weight: 700;
         }
         .narasi p {
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.75);
+            font-size: 0.7rem;
             line-height: 1.7;
-            margin-bottom: 4px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 6px;
         }
         .narasi .highlight { color: #00D2FF; font-weight: 600; }
         .narasi .rumus {
-            display: block;
-            text-align: center;
+            font-size: 0.75rem;
             color: #FFD93D;
             font-weight: 600;
-            font-size: 0.9rem;
-            padding: 8px 0 4px;
-            background: rgba(255,217,61,0.04);
+            text-align: center;
+            display: block;
+            margin: 6px 0 4px 0;
+            padding: 4px 0;
+            background: rgba(255,217,61,0.05);
             border-radius: 4px;
-            margin: 6px 0;
         }
         .narasi .keterangan {
-            font-size: 0.62rem;
-            color: rgba(255,255,255,0.35);
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.4);
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.5;
+            margin-bottom: 6px;
         }
         .narasi .aplikasi {
-            margin-top: 6px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: rgba(255,255,255,0.5);
-            line-height: 1.8;
+            margin-top: 4px;
+            line-height: 1.6;
         }
-        .narasi .aplikasi i { color: #00D2FF; margin-right: 4px; }
-        .opsi-wrapper {
-            margin-top: 18px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(255,255,255,0.06);
+        .narasi .aplikasi i { color: #00D2FF; font-size: 0.6rem; margin-right: 4px; }
+
+        /* ===== KOLOM KANAN ===== */
+        .kolom-kanan {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 25px;
         }
-        .opsi-wrapper .label {
-            font-size: 0.8rem;
+        .kolom-kanan h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FF6584;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Preview Soal - LANGSUNG TAMPIL */
+        .preview-soal {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .preview-soal img {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* ===== OPSI JAWABAN ===== */
+        .opsi-container {
+            margin: 0 0 10px 0;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .opsi-container .label {
+            font-size: 0.75rem;
             color: rgba(255,255,255,0.4);
+            margin-bottom: 8px;
             display: block;
-            margin-bottom: 10px;
             font-weight: 600;
         }
-        .opsi {
-            padding: 10px 14px;
-            border: 2px solid rgba(255,255,255,0.05);
-            border-radius: 8px;
-            margin-bottom: 5px;
+        .pilihan {
             cursor: pointer;
-            transition: 0.2s;
-            font-size: 0.85rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.05);
+            margin-bottom: 4px;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.02);
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: rgba(255,255,255,0.01);
+            gap: 10px;
+            width: 100%;
         }
-        .opsi:hover {
-            border-color: rgba(108,99,255,0.3);
-            background: rgba(108,99,255,0.03);
-        }
-        .opsi.selected {
-            border-color: #6C63FF;
-            background: rgba(108,99,255,0.08);
-            box-shadow: 0 0 20px rgba(108,99,255,0.03);
-        }
-        .opsi .huruf {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
+        .pilihan:hover { border-color: rgba(108,99,255,0.3); background: rgba(108,99,255,0.05); }
+        .pilihan.selected { border-color: #6C63FF; background: rgba(108,99,255,0.1); }
+        .pilihan .letter {
+            width: 22px; height: 22px; border-radius: 50%;
             background: rgba(255,255,255,0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.7rem;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.6rem; flex-shrink: 0;
         }
-        .opsi.selected .huruf { background: #6C63FF; }
-        .tombol-group {
+        .pilihan.selected .letter { background: #6C63FF; }
+        .pilihan .text { font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+        .pilihan input { display: none; }
+
+        /* ===== TOMBOL ===== */
+        .tombol-opsi {
             display: flex;
             gap: 10px;
-            margin-top: 14px;
-            flex-wrap: wrap;
+            margin-top: 10px;
         }
-        .tombol-group button {
+        .tombol-opsi button {
             flex: 1;
-            min-width: 100px;
-            padding: 10px 16px;
+            padding: 8px 12px;
             border: none;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             cursor: pointer;
-            transition: 0.2s;
-            font-family: inherit;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
-        .tombol-group .btn-primary {
-            background: linear-gradient(135deg, #6C63FF, #FF6584);
-            color: #fff;
-        }
-        .tombol-group .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(108,99,255,0.25);
-        }
-        .tombol-group .btn-secondary {
-            background: rgba(255,255,255,0.06);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .tombol-group .btn-secondary:hover { background: rgba(255,255,255,0.1); }
-        .tombol-group button:active { transform: scale(0.97); }
+        .tombol-opsi .btn-primary { background: linear-gradient(135deg, #6C63FF, #FF6584); color: #fff; }
+        .tombol-opsi .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(108,99,255,0.3); }
+        .tombol-opsi .btn-secondary { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+        .tombol-opsi .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
         .hasil {
-            margin-top: 12px;
-            padding: 12px 16px;
+            margin-top: 8px;
+            padding: 8px 12px;
             border-radius: 8px;
             display: none;
-            text-align: center;
             font-weight: 600;
-            font-size: 0.85rem;
-            line-height: 1.5;
+            text-align: center;
+            font-size: 0.8rem;
         }
-        .hasil.benar {
-            display: block;
-            background: rgba(0,210,255,0.08);
-            border: 1px solid rgba(0,210,255,0.15);
-            color: #00D2FF;
-        }
-        .hasil.salah {
-            display: block;
-            background: rgba(255,101,132,0.08);
-            border: 1px solid rgba(255,101,132,0.15);
-            color: #FF6584;
-        }
-        .hasil.warning {
-            display: block;
-            background: rgba(255,217,61,0.05);
-            border: 1px solid rgba(255,217,61,0.1);
-            color: #FFD93D;
-        }
+        .hasil.benar { display: block; background: rgba(0,210,255,0.1); border: 1px solid rgba(0,210,255,0.2); color: #00D2FF; }
+        .hasil.salah { display: block; background: rgba(255,101,132,0.1); border: 1px solid rgba(255,101,132,0.2); color: #FF6584; }
         .hasil i { margin-right: 6px; }
+
+        /* ===== TOMBOL TOGGLE SIMULASI ===== */
+        .toggle-simulasi-wrapper {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .btn-toggle-sim {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #00D2FF;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-toggle-sim:hover {
+            background: rgba(0,210,255,0.1);
+            border-color: rgba(0,210,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* ===== SIMULASI ===== */
+        .simulasi-section {
+            display: none;
+            margin-top: 20px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            background: #0f191f;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+            animation: fadeIn 0.4s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #simContainer {
+            width: 100%;
+            height: 380px;
+            display: flex;
+            flex-direction: column;
+            background: radial-gradient(ellipse at 50% 0%, #1c3545, #0b1720);
+            border-radius: 14px;
+            padding: 8px 14px 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        #simHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4px 6px;
+            flex-shrink: 0;
+        }
+        #simHeader h3 { color: #f0f6fc; font-size: 15px; font-weight: 700; }
+        #simHeader h3 span { color: #4bc0d9; }
+        #simHeader .info { color: #9ab8cc; font-size: 11px; background: rgba(255,255,255,0.06); padding: 3px 12px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.08); }
+
+        #canvasWrap {
+            flex: 1;
+            min-height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #a2bed0;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.12);
+        }
+        #simCanvas { display: block; width: 100%; height: 100%; background: linear-gradient(180deg, #cce4ef, #a6c2d3); }
+
+        #controls {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 0 2px;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+        #controls button {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #e2edf5;
+            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        #controls button:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+        #controls button.active { background: rgba(75,192,217,0.25); border-color: rgba(75,192,217,0.4); color: #7fe4ff; }
+        #controls button.primary { background: rgba(75,192,217,0.18); border-color: rgba(75,192,217,0.3); }
+
+        #simFooter {
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 10px;
+            padding-top: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 15px; }
+            .tombol-opsi { flex-direction: column; }
+            .header h1 { font-size: 1.4rem; }
+            .pilihan .text { white-space: normal; font-size: 0.8rem; }
+            #simContainer { height: 300px; }
+            .preview-soal img { max-height: 350px; }
+            .preview-ilustrasi img { max-height: 100px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🌊 Prinsip Archimedes</h1>
-    <p class="subtitle">Pembelajaran dengan pendekatan <strong>Deep Learning</strong> • Konsep & Aplikasi</p>
+    <!-- HEADER -->
+    <div class="header">
+        <h1><i class="fas fa-water"></i> Prinsip Archimedes</h1>
+        <p>Pembelajaran dengan pendekatan <strong>Deep Learning</strong> • Konsep & Aplikasi</p>
+    </div>
 
     <div class="row">
-        <!-- ===== KOLOM KIRI: ILUSTRASI ===== -->
-        <div class="card">
-            <div class="card-title" style="color: #00D2FF;"><span>📸</span> Ilustrasi</div>
+        <!-- ===== KOLOM KIRI ===== -->
+        <div class="kolom-kiri">
+            <h2><i class="fas fa-image"></i> Ilustrasi</h2>
 
-            <!-- GAMBAR ILUSTRASI LANGSUNG TAMPIL (TANPA UPLOAD) -->
+            <!-- GAMBAR ILUSTRASI LANGSUNG TAMPIL -->
             <div class="preview-ilustrasi">
                 <img src="ilustrasi_archimedes.jpg" alt="Ilustrasi Archimedes">
             </div>
 
-            <!-- Narasi -->
+            <!-- NARASI -->
             <div class="narasi">
-                <h3>💡 Prinsip Archimedes</h3>
-                <p>"Sebuah benda yang dicelupkan sebagian atau seluruhnya ke dalam fluida akan mengalami gaya angkat ke atas."</p>
-                <p>Gaya angkat ini disebut <span class="highlight">gaya Archimedes</span>.</p>
+                <h3><i class="fas fa-lightbulb"></i> Prinsip Archimedes</h3>
+                <p>
+                    "Sebuah benda yang dicelupkan sebagian atau seluruhnya ke dalam fluida akan mengalami gaya angkat ke atas."
+                </p>
+                <p>
+                    Gaya angkat ini disebut <span class="highlight">gaya Archimedes</span>.
+                </p>
+                <p>
+                    Besar gaya Archimedes sama dengan berat fluida yang dipindahkan oleh benda.
+                </p>
                 <span class="rumus">F<sub>A</sub> = ρ<sub>f</sub> · g · V<sub>bf</sub></span>
                 <div class="keterangan">
                     F<sub>A</sub> = gaya Archimedes (N)<br>
@@ -275,96 +394,535 @@
                     V<sub>bf</sub> = volume benda tercelup (m³)
                 </div>
                 <div class="aplikasi">
-                    <i>✅</i> Kapal laut<br>
-                    <i>✅</i> Kapal selam<br>
-                    <i>✅</i> Balon udara<br>
-                    <i>✅</i> Hidrometer
+                    <i class="fas fa-check-circle"></i> Kapal laut<br>
+                    <i class="fas fa-check-circle"></i> Kapal selam<br>
+                    <i class="fas fa-check-circle"></i> Balon udara<br>
+                    <i class="fas fa-check-circle"></i> Hidrometer
                 </div>
             </div>
         </div>
 
-        <!-- ===== KOLOM KANAN: SOAL ===== -->
-        <div class="card">
-            <div class="card-title" style="color: #FF6584;"><span>📝</span> Soal & Jawaban</div>
+        <!-- ===== KOLOM KANAN ===== -->
+        <div class="kolom-kanan">
+            <h2><i class="fas fa-pencil-alt"></i> Soal & Jawaban</h2>
 
-            <!-- GAMBAR SOAL LANGSUNG TAMPIL (TANPA UPLOAD) -->
+            <!-- GAMBAR SOAL LANGSUNG TAMPIL -->
             <div class="preview-soal">
                 <img src="soal_1.jpg" alt="Soal Fisika">
             </div>
 
             <!-- OPSI JAWABAN -->
-            <div class="opsi-wrapper">
-                <span class="label">✅ Pilih jawaban yang paling tepat:</span>
-                <div class="opsi" data-value="A" onclick="pilihOpsi('A')">
-                    <span class="huruf">A</span> X = 175, Y = 200, Z = 225
+            <div class="opsi-container">
+                <span class="label"><i class="fas fa-check-circle"></i> Pilih jawaban yang paling tepat:</span>
+
+                <div class="pilihan" data-value="A" onclick="pilihOpsi('A')">
+                    <span class="letter">A</span>
+                    <span class="text">X = 175, Y = 200, Z = 225</span>
+                    <input type="radio" name="jawaban" value="A">
                 </div>
-                <div class="opsi" data-value="B" onclick="pilihOpsi('B')">
-                    <span class="huruf">B</span> X = 175, Y = 200, Z = 200
+
+                <div class="pilihan" data-value="B" onclick="pilihOpsi('B')">
+                    <span class="letter">B</span>
+                    <span class="text">X = 175, Y = 200, Z = 200</span>
+                    <input type="radio" name="jawaban" value="B">
                 </div>
-                <div class="opsi" data-value="C" onclick="pilihOpsi('C')">
-                    <span class="huruf">C</span> X = 200, Y = 200, Z = 200
+
+                <div class="pilihan" data-value="C" onclick="pilihOpsi('C')">
+                    <span class="letter">C</span>
+                    <span class="text">X = 200, Y = 200, Z = 200</span>
+                    <input type="radio" name="jawaban" value="C">
                 </div>
-                <div class="opsi" data-value="D" onclick="pilihOpsi('D')">
-                    <span class="huruf">D</span> X = 150, Y = 200, Z = 200
+
+                <div class="pilihan" data-value="D" onclick="pilihOpsi('D')">
+                    <span class="letter">D</span>
+                    <span class="text">X = 150, Y = 200, Z = 200</span>
+                    <input type="radio" name="jawaban" value="D">
                 </div>
-                <div class="opsi" data-value="E" onclick="pilihOpsi('E')">
-                    <span class="huruf">E</span> X = 150, Y = 175, Z = 225
+
+                <div class="pilihan" data-value="E" onclick="pilihOpsi('E')">
+                    <span class="letter">E</span>
+                    <span class="text">X = 150, Y = 175, Z = 225</span>
+                    <input type="radio" name="jawaban" value="E">
                 </div>
             </div>
 
-            <div class="tombol-group">
-                <button class="btn-primary" onclick="periksaJawaban()">✅ Periksa</button>
-                <button class="btn-secondary" onclick="resetJawaban()">↻ Reset</button>
+            <!-- TOMBOL -->
+            <div class="tombol-opsi">
+                <button class="btn-primary" onclick="cekJawaban()">
+                    <i class="fas fa-check"></i> Periksa Jawaban
+                </button>
+                <button class="btn-secondary" onclick="resetJawaban()">
+                    <i class="fas fa-undo"></i> Reset
+                </button>
             </div>
 
             <div class="hasil" id="hasil"></div>
+        </div>
+    </div>
+
+    <!-- ===== TOMBOL TOGGLE SIMULASI ===== -->
+    <div class="toggle-simulasi-wrapper">
+        <button class="btn-toggle-sim" onclick="toggleSimulasi()">
+            <i class="fas fa-flask" id="toggleIcon"></i> <span id="toggleText">Buka Simulasi Percobaan Apel</span>
+        </button>
+    </div>
+
+    <!-- ===== SIMULASI ===== -->
+    <div class="simulasi-section" id="simulasiSection">
+        <div id="simContainer">
+            <div id="simHeader">
+                <h3>🍎 <span>Simulasi Percobaan Apel</span></h3>
+                <span class="info">⚡ Fisika Interaktif</span>
+            </div>
+            <div id="canvasWrap">
+                <canvas id="simCanvas"></canvas>
+            </div>
+            <div id="controls">
+                <button class="primary" id="btnStart">▶ Mulai Percobaan</button>
+                <button id="btnResetSim">⟳ Reset Simulasi</button>
+                <button class="active" id="btnSlow">🐢 Lambat</button>
+                <button id="btnFast">🐇 Cepat</button>
+            </div>
+            <div id="simFooter">Hukum Archimedes · 1. Terapung · 2. Melayang · 3. Tenggelam</div>
         </div>
     </div>
 </div>
 
 <script>
     // ================================================================
-    // LOGIKA JAWABAN
+    // TOGGLE SIMULASI
+    // ================================================================
+    function toggleSimulasi() {
+        const section = document.getElementById('simulasiSection');
+        const text = document.getElementById('toggleText');
+        const icon = document.getElementById('toggleIcon');
+        if (section.style.display === 'block') {
+            section.style.display = 'none';
+            text.textContent = 'Buka Simulasi Percobaan Apel';
+            icon.className = 'fas fa-flask';
+        } else {
+            section.style.display = 'block';
+            text.textContent = 'Tutup Simulasi Percobaan Apel';
+            icon.className = 'fas fa-chevron-up';
+            window.dispatchEvent(new Event('resize'));
+        }
+    }
+
+    // ================================================================
+    // LOGIKA SOAL
     // ================================================================
     const KUNCI_JAWABAN = 'D';
     let jawabanDipilih = null;
 
     function pilihOpsi(value) {
         jawabanDipilih = value;
-        document.querySelectorAll('.opsi').forEach(el => {
+        document.querySelectorAll('.pilihan').forEach(el => {
             el.classList.remove('selected');
-            if (el.dataset.value === value) el.classList.add('selected');
+            el.querySelector('input').checked = false;
+            if (el.dataset.value === value) {
+                el.classList.add('selected');
+                el.querySelector('input').checked = true;
+            }
         });
         const hasil = document.getElementById('hasil');
         hasil.className = 'hasil';
         hasil.style.display = 'none';
     }
 
-    function periksaJawaban() {
+    function cekJawaban() {
         const hasil = document.getElementById('hasil');
         if (!jawabanDipilih) {
-            hasil.className = 'hasil warning';
-            hasil.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Silakan pilih jawaban terlebih dahulu!';
+            hasil.className = 'hasil';
             hasil.style.display = 'block';
+            hasil.style.background = 'rgba(255,217,61,0.05)';
+            hasil.style.border = '1px solid rgba(255,217,61,0.1)';
+            hasil.style.color = '#FFD93D';
+            hasil.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Silakan pilih jawaban terlebih dahulu!';
             return;
         }
         if (jawabanDipilih === KUNCI_JAWABAN) {
             hasil.className = 'hasil benar';
-            hasil.innerHTML = '<i class="fas fa-check-circle"></i> ✅ Jawaban BENAR! 🎉 Selamat!';
+            hasil.innerHTML = '<i class="fas fa-check-circle"></i> ✅ Jawaban Anda BENAR! Kamu hebat! 🎉';
         } else {
             hasil.className = 'hasil salah';
-            hasil.innerHTML = '<i class="fas fa-times-circle"></i> ❌ Jawaban SALAH. Jawaban yang benar adalah <strong>D. X = 150, Y = 200, Z = 200</strong>.';
+            hasil.innerHTML = '<i class="fas fa-times-circle"></i> ❌ Jawaban Anda SALAH. Jawaban yang benar adalah <strong>D. X = 150, Y = 200, Z = 200</strong>.';
         }
         hasil.style.display = 'block';
     }
 
     function resetJawaban() {
         jawabanDipilih = null;
-        document.querySelectorAll('.opsi').forEach(el => el.classList.remove('selected'));
+        document.querySelectorAll('.pilihan').forEach(el => {
+            el.classList.remove('selected');
+            el.querySelector('input').checked = false;
+        });
         const hasil = document.getElementById('hasil');
         hasil.className = 'hasil';
         hasil.style.display = 'none';
     }
+
+    // ================================================================
+    // SIMULASI KANVAS
+    // ================================================================
+    (function() {
+        const canvas = document.getElementById('simCanvas');
+        const ctx = canvas.getContext('2d');
+        let W, H;
+
+        function resize() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            W = canvas.width;
+            H = canvas.height;
+        }
+
+        const state = { phase: 'awal', progress: 0, speed: 0.0035, time: 0 };
+        const btnStart = document.getElementById('btnStart');
+        const btnResetSim = document.getElementById('btnResetSim');
+        const btnSlow = document.getElementById('btnSlow');
+        const btnFast = document.getElementById('btnFast');
+
+        function lighten(col, p) {
+            const n = parseInt(col.replace('#',''),16);
+            const a = Math.round(2.55*p);
+            return `rgb(${Math.min(255,(n>>16)+a)},${Math.min(255,((n>>8)&0xff)+a)},${Math.min(255,(n&0xff)+a)})`;
+        }
+        function darken(col, p) {
+            const n = parseInt(col.replace('#',''),16);
+            const a = Math.round(2.55*p);
+            return `rgb(${Math.max(0,(n>>16)-a)},${Math.max(0,((n>>8)&0xff)-a)},${Math.max(0,(n&0xff)-a)})`;
+        }
+
+        function drawApple(cx, cy, r, color) {
+            ctx.save();
+            ctx.shadowBlur = r * 0.8;
+            ctx.shadowColor = 'rgba(0,0,0,0.25)';
+            ctx.shadowOffsetY = r * 0.2;
+            const grad = ctx.createRadialGradient(cx - r*0.35, cy - r*0.35, r*0.05, cx, cy, r);
+            grad.addColorStop(0, lighten(color, 55));
+            grad.addColorStop(0.5, color);
+            grad.addColorStop(1, darken(color, 45));
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, 0, Math.PI*2);
+            ctx.fillStyle = grad;
+            ctx.fill();
+            ctx.restore();
+            ctx.fillStyle = darken(color, 35);
+            ctx.beginPath();
+            ctx.ellipse(cx - r*0.08, cy - r*0.82, r*0.22, r*0.1, 0, 0, Math.PI*2);
+            ctx.fill();
+            ctx.strokeStyle = '#4e352f';
+            ctx.lineWidth = r * 0.12;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(cx - r*0.02, cy - r*0.78);
+            ctx.quadraticCurveTo(cx + r*0.12, cy - r*1.2, cx + r*0.25, cy - r*1.1);
+            ctx.stroke();
+            ctx.fillStyle = '#388e3c';
+            ctx.beginPath();
+            ctx.ellipse(cx + r*0.2, cy - r*1.05, r*0.22, r*0.1, 0.6, 0, Math.PI*2);
+            ctx.fill();
+            ctx.fillStyle = 'rgba(255,255,255,0.28)';
+            ctx.beginPath();
+            ctx.ellipse(cx - r*0.28, cy - r*0.28, r*0.16, r*0.32, -0.4, 0, Math.PI*2);
+            ctx.fill();
+        }
+
+        function drawWaterFlow(fromX, fromY, toX, toY, active) {
+            if (!active) return;
+            const t = state.time;
+            const steps = 25;
+            for (let i = 0; i < steps; i++) {
+                const f = i / steps;
+                const baseX = fromX + (toX - fromX) * f;
+                const baseY = fromY + (toY - fromY) * f + Math.sin(f * 3 + t * 0.04) * 5;
+                const r = 2 + (1 - f) * 2;
+                const alpha = 0.2 + (1 - f) * 0.4;
+                ctx.fillStyle = `rgba(64, 200, 235, ${alpha})`;
+                ctx.beginPath();
+                ctx.arc(baseX + Math.sin(f * 2 + t * 0.03) * 2, baseY, r, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            const grad = ctx.createLinearGradient(0, 0, 0, H);
+            grad.addColorStop(0, '#daf1fb');
+            grad.addColorStop(1, '#a8c6db');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, W, H);
+
+            const s = Math.min(W / 1150, H / 380);
+            const baseY = H * 0.70;
+            const spacing = Math.min(W * 0.30, 330 * s);
+            const centerW = W / 2;
+            const m1 = centerW - spacing;
+            const m2 = centerW + spacing;
+
+            ctx.strokeStyle = 'rgba(0,0,0,0.04)';
+            ctx.lineWidth = 1.2 * s;
+            ctx.setLineDash([4 * s, 6 * s]);
+            ctx.beginPath();
+            ctx.moveTo(centerW - spacing/2, 16 * s);
+            ctx.lineTo(centerW - spacing/2, H - 16 * s);
+            ctx.moveTo(centerW + spacing/2, 16 * s);
+            ctx.lineTo(centerW + spacing/2, H - 16 * s);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.font = `bold ${13 * s}px "Segoe UI", sans-serif`;
+            ctx.fillStyle = 'rgba(15,50,68,0.75)';
+            ctx.textAlign = 'center';
+            ctx.fillText('⚖️ PERCOBAAN 1', m1, 20 * s);
+            ctx.fillText('⚖️ PERCOBAAN 2', centerW, 20 * s);
+            ctx.fillText('⚖️ PERCOBAAN 3', m2, 20 * s);
+
+            const p = state.progress;
+            const smoothP = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+
+            function drawStation(cx, initialVal, finalVal, label, color, mode) {
+                const isFloat = mode === 'floating';
+                const isSink = mode === 'sinking';
+                const active = state.phase !== 'awal';
+                let displayText = initialVal + ' g';
+                if (active) {
+                    const currentVal = Math.round(initialVal + (finalVal - initialVal) * smoothP);
+                    displayText = currentVal + ' g';
+                }
+
+                ctx.shadowBlur = 10 * s;
+                ctx.shadowColor = 'rgba(0,0,0,0.08)';
+                ctx.fillStyle = '#f0f4f8';
+                ctx.beginPath();
+                ctx.roundRect(cx - 52 * s, baseY - 5 * s, 104 * s, 42 * s, 9 * s);
+                ctx.fill();
+                ctx.shadowColor = 'transparent';
+                ctx.strokeStyle = '#b0c8d8';
+                ctx.lineWidth = 1.3 * s;
+                ctx.stroke();
+
+                ctx.fillStyle = '#121f26';
+                ctx.shadowBlur = 4 * s;
+                ctx.shadowColor = 'rgba(0,0,0,0.12)';
+                ctx.beginPath();
+                ctx.roundRect(cx - 39 * s, baseY + 3 * s, 78 * s, 23 * s, 6 * s);
+                ctx.fill();
+                ctx.shadowColor = 'transparent';
+
+                ctx.font = `bold ${15 * s}px "Courier New", monospace`;
+                ctx.fillStyle = '#5cf584';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(displayText, cx, baseY + 14.5 * s);
+                ctx.textBaseline = 'alphabetic';
+
+                const gx2 = cx - 18 * s;
+                const gw2 = 36 * s;
+                const gh2 = 28 * s;
+                const gy2 = (baseY - 5 * s) - gh2;
+
+                ctx.fillStyle = 'rgba(0,0,0,0.1)';
+                ctx.beginPath();
+                ctx.ellipse(cx, baseY - 5 * s, gw2 * 0.45, 2.8 * s, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                const glassGrad = ctx.createLinearGradient(gx2, gy2, gx2 + gw2, gy2);
+                glassGrad.addColorStop(0, 'rgba(255,255,255,0.7)');
+                glassGrad.addColorStop(0.2, 'rgba(180,220,240,0.25)');
+                glassGrad.addColorStop(0.8, 'rgba(180,220,240,0.25)');
+                glassGrad.addColorStop(1, 'rgba(255,255,255,0.6)');
+
+                ctx.fillStyle = glassGrad;
+                ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+                ctx.lineWidth = 1.4 * s;
+                ctx.beginPath();
+                ctx.roundRect(gx2, gy2, gw2, gh2, [3.5 * s, 3.5 * s, 2 * s, 2 * s]);
+                ctx.fill();
+                ctx.stroke();
+
+                let fillFactorMax = 0.40;
+                if (mode === 'neutral' || isSink) fillFactorMax = 0.88;
+                const ratio = Math.min(1, active ? smoothP : 0);
+                const fillH = ratio * fillFactorMax * 19 * s;
+                if (fillH > 1) {
+                    ctx.fillStyle = 'rgba(50, 165, 205, 0.65)';
+                    ctx.beginPath();
+                    ctx.roundRect(gx2 + 2 * s, (gy2 + gh2) - fillH - 2 * s, gw2 - 4 * s, fillH, 2 * s);
+                    ctx.fill();
+                    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                    ctx.beginPath();
+                    ctx.ellipse(cx, (gy2 + gh2) - fillH - 2 * s, (gw2 - 6 * s) / 2, 2 * s, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                const gx = cx - 88 * s;
+                const gy = baseY - 114 * s;
+                const gw = 48 * s;
+                const gh = 142 * s;
+
+                ctx.fillStyle = 'rgba(0,0,0,0.12)';
+                ctx.beginPath();
+                ctx.ellipse(gx + gw/2, baseY - 5 * s, gw * 0.45, 4 * s, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                const measureGrad = ctx.createLinearGradient(gx, gy, gx + gw, gy);
+                measureGrad.addColorStop(0, 'rgba(255,255,255,0.75)');
+                measureGrad.addColorStop(0.15, 'rgba(190,225,245,0.2)');
+                measureGrad.addColorStop(0.85, 'rgba(190,225,245,0.2)');
+                measureGrad.addColorStop(1, 'rgba(255,255,255,0.7)');
+
+                ctx.fillStyle = measureGrad;
+                ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+                ctx.lineWidth = 1.6 * s;
+                ctx.beginPath();
+                ctx.roundRect(gx, gy, gw, gh, [6 * s, 6 * s, 2 * s, 2 * s]);
+                ctx.fill();
+                ctx.stroke();
+
+                const baseWl = gy + 36 * s;
+                let subFactor = 0;
+                if (isFloat) subFactor = 0.55 * smoothP;
+                else if (isSink || mode === 'neutral') subFactor = 0.92 * smoothP;
+                const currentWl = baseWl - (subFactor * 21 * s);
+
+                const waterHeight = gh - (currentWl - gy) - 3 * s;
+                ctx.fillStyle = 'rgba(55, 175, 210, 0.38)';
+                ctx.beginPath();
+                ctx.roundRect(gx + 2 * s, currentWl, gw - 4 * s, waterHeight, [0, 0, 2 * s, 2 * s]);
+                ctx.fill();
+
+                const pourX = gx + gw;
+                const pourY = currentWl - 2 * s;
+                const spoutTipX = cx - 12 * s;
+                const spoutTipY = baseY - 50 * s;
+
+                ctx.fillStyle = '#4a7a8f';
+                ctx.beginPath();
+                ctx.moveTo(pourX, pourY);
+                ctx.lineTo(spoutTipX, spoutTipY);
+                ctx.lineTo(spoutTipX, spoutTipY + 8 * s);
+                ctx.closePath();
+                ctx.fill();
+
+                const ar = 17 * s;
+                let targetFinalY;
+                if (isFloat) targetFinalY = currentWl + (ar * 0.5);
+                else if (isSink) targetFinalY = (gy + gh) - ar - 4 * s;
+                else targetFinalY = currentWl + 24 * s;
+
+                const cupCenterX = gx + gw / 2;
+                const mouthY = gy;
+
+                let apx, apy;
+                if (!active) {
+                    apx = cx + 32 * s;
+                    apy = baseY - 16 * s;
+                } else {
+                    if (p <= 0.4) {
+                        const subP = p / 0.4;
+                        const easeSub = subP * subP * (3 - 2 * subP);
+                        const startX = cx + 32 * s;
+                        const startY = baseY - 16 * s;
+                        const peakX = cupCenterX;
+                        const peakY = mouthY - 40 * s;
+                        apx = startX + (peakX - startX) * easeSub;
+                        apy = startY + (peakY - startY) * easeSub;
+                    } else {
+                        const subP = (p - 0.4) / 0.6;
+                        const easeDamp = 1 - Math.pow(1 - subP, 3);
+                        const peakX = cupCenterX;
+                        const peakY = mouthY - 40 * s;
+                        apx = peakX;
+                        apy = peakY + (targetFinalY - peakY) * easeDamp;
+                    }
+                }
+
+                drawApple(apx, apy, ar, color);
+                drawWaterFlow(spoutTipX, spoutTipY + 4 * s, cx, baseY - 32 * s, active && p > 0.45 && p < 0.95);
+
+                if (state.phase === 'selesai') {
+                    ctx.save();
+                    ctx.textAlign = 'center';
+                    let densityText = mode === 'floating' ? 'Massa Jenis Benda < Massa Jenis Air' : (mode === 'neutral' ? 'Massa Jenis Benda = Massa Jenis Air' : 'Massa Jenis Benda > Massa Jenis Air');
+                    ctx.font = `bold ${11 * s}px "Segoe UI", sans-serif`;
+                    ctx.fillStyle = '#10b981';
+                    ctx.fillText('✨ GAYA APUNG = BERAT BENDA ✨', cx, 62 * s);
+                    ctx.fillStyle = '#334155';
+                    ctx.fillText(densityText, cx, 78 * s);
+                    ctx.restore();
+                }
+
+                ctx.font = `bold ${12 * s}px "Segoe UI", sans-serif`;
+                ctx.fillStyle = '#1b6e3e';
+                ctx.textAlign = 'center';
+                ctx.fillText(label, cx, baseY + 55 * s);
+            }
+
+            drawStation(m1, 175, 145, '🟡 Terapung', '#e67e22', 'floating');
+            drawStation(centerW, 200, 200, '🟢 Melayang', '#27ae60', 'neutral');
+            drawStation(m2, 225, 200, '🔴 Tenggelam', '#c0392b', 'sinking');
+        }
+
+        CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+            if (typeof r === 'number') r = [r, r, r, r];
+            const [tl, tr, br, bl] = r;
+            this.beginPath();
+            this.moveTo(x + tl, y);
+            this.lineTo(x + w - tr, y);
+            this.quadraticCurveTo(x + w, y, x + w, y + tr);
+            this.lineTo(x + w, y + h - br);
+            this.quadraticCurveTo(x + w, y + h, x + w - br, y + h);
+            this.lineTo(x + bl, y + h);
+            this.quadraticCurveTo(x, y + h, x, y + h - bl);
+            this.lineTo(x, y + tl);
+            this.quadraticCurveTo(x, y, x + tl, y);
+            this.closePath();
+            return this;
+        };
+
+        function animate() {
+            if (state.phase === 'berjalan') {
+                state.progress += state.speed;
+                if (state.progress >= 1) {
+                    state.progress = 1;
+                    state.phase = 'selesai';
+                    btnStart.textContent = '✅ Selesai';
+                    btnStart.classList.add('active');
+                }
+            }
+            state.time++;
+            draw();
+            requestAnimationFrame(animate);
+        }
+
+        function start() {
+            if (state.phase === 'berjalan') return;
+            if (state.phase === 'selesai') { reset(); setTimeout(start, 300); return; }
+            state.phase = 'berjalan';
+            state.progress = 0;
+            btnStart.textContent = '⏳ Berlangsung...';
+            btnStart.classList.add('active');
+        }
+
+        function resetSim() {
+            state.phase = 'awal';
+            state.progress = 0;
+            btnStart.textContent = '▶ Mulai Percobaan';
+            btnStart.classList.remove('active');
+        }
+
+        btnStart.addEventListener('click', start);
+        btnResetSim.addEventListener('click', resetSim);
+        btnSlow.addEventListener('click', () => { state.speed = 0.0035; btnSlow.classList.add('active'); btnFast.classList.remove('active'); });
+        btnFast.addEventListener('click', () => { state.speed = 0.015; btnFast.classList.add('active'); btnSlow.classList.remove('active'); });
+
+        window.addEventListener('resize', resize);
+        resize();
+        resetSim();
+        animate();
+    })();
 </script>
 
 </body>
