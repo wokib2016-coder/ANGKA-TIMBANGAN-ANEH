@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== RESET ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -46,8 +45,6 @@
             font-size: 0.9rem;
             margin-top: 4px;
         }
-
-        /* ===== KOLOM ===== */
         .row {
             display: grid;
             grid-template-columns: 20% 80%;
@@ -56,8 +53,6 @@
         @media (max-width: 992px) {
             .row { grid-template-columns: 1fr; }
         }
-
-        /* ===== KOLOM KIRI ===== */
         .kolom-kiri {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
@@ -73,20 +68,16 @@
             align-items: center;
             gap: 5px;
         }
-
-        /* Preview Ilustrasi - LANGSUNG TAMPIL */
         .preview-ilustrasi {
             text-align: center;
             margin-bottom: 10px;
         }
         .preview-ilustrasi img {
             max-width: 100%;
-            max-height: 150px;
+            max-height: 200px;
             border-radius: 6px;
             border: 1px solid rgba(255,255,255,0.05);
         }
-
-        /* ===== NARASI ===== */
         .narasi {
             background: rgba(255,255,255,0.02);
             border-radius: 8px;
@@ -131,8 +122,6 @@
             line-height: 1.6;
         }
         .narasi .aplikasi i { color: #00D2FF; font-size: 0.6rem; margin-right: 4px; }
-
-        /* ===== KOLOM KANAN ===== */
         .kolom-kanan {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
@@ -148,8 +137,6 @@
             align-items: center;
             gap: 10px;
         }
-
-        /* Preview Soal - LANGSUNG TAMPIL */
         .preview-soal {
             text-align: center;
             margin-bottom: 15px;
@@ -160,8 +147,6 @@
             border-radius: 8px;
             border: 1px solid rgba(255,255,255,0.05);
         }
-
-        /* ===== OPSI JAWABAN ===== */
         .opsi-container {
             margin: 0 0 10px 0;
             padding-top: 10px;
@@ -198,8 +183,6 @@
         .pilihan.selected .letter { background: #6C63FF; }
         .pilihan .text { font-size: 0.85rem; color: rgba(255,255,255,0.8); }
         .pilihan input { display: none; }
-
-        /* ===== TOMBOL ===== */
         .tombol-opsi {
             display: flex;
             gap: 10px;
@@ -224,7 +207,6 @@
         .tombol-opsi .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(108,99,255,0.3); }
         .tombol-opsi .btn-secondary { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
         .tombol-opsi .btn-secondary:hover { background: rgba(255,255,255,0.1); }
-
         .hasil {
             margin-top: 8px;
             padding: 8px 12px;
@@ -237,8 +219,6 @@
         .hasil.benar { display: block; background: rgba(0,210,255,0.1); border: 1px solid rgba(0,210,255,0.2); color: #00D2FF; }
         .hasil.salah { display: block; background: rgba(255,101,132,0.1); border: 1px solid rgba(255,101,132,0.2); color: #FF6584; }
         .hasil i { margin-right: 6px; }
-
-        /* ===== TOMBOL TOGGLE SIMULASI ===== */
         .toggle-simulasi-wrapper {
             margin-top: 30px;
             text-align: center;
@@ -263,8 +243,6 @@
             border-color: rgba(0,210,255,0.3);
             transform: translateY(-2px);
         }
-
-        /* ===== SIMULASI ===== */
         .simulasi-section {
             display: none;
             margin-top: 20px;
@@ -280,7 +258,6 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         #simContainer {
             width: 100%;
             height: 380px;
@@ -302,7 +279,6 @@
         #simHeader h3 { color: #f0f6fc; font-size: 15px; font-weight: 700; }
         #simHeader h3 span { color: #4bc0d9; }
         #simHeader .info { color: #9ab8cc; font-size: 11px; background: rgba(255,255,255,0.06); padding: 3px 12px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.08); }
-
         #canvasWrap {
             flex: 1;
             min-height: 0;
@@ -312,7 +288,6 @@
             box-shadow: inset 0 0 30px rgba(0,0,0,0.12);
         }
         #simCanvas { display: block; width: 100%; height: 100%; background: linear-gradient(180deg, #cce4ef, #a6c2d3); }
-
         #controls {
             display: flex;
             justify-content: center;
@@ -336,14 +311,12 @@
         #controls button:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
         #controls button.active { background: rgba(75,192,217,0.25); border-color: rgba(75,192,217,0.4); color: #7fe4ff; }
         #controls button.primary { background: rgba(75,192,217,0.18); border-color: rgba(75,192,217,0.3); }
-
         #simFooter {
             text-align: center;
             color: rgba(255,255,255,0.3);
             font-size: 10px;
             padding-top: 4px;
         }
-
         @media (max-width: 600px) {
             .container { padding: 15px; }
             .tombol-opsi { flex-direction: column; }
@@ -351,41 +324,28 @@
             .pilihan .text { white-space: normal; font-size: 0.8rem; }
             #simContainer { height: 300px; }
             .preview-soal img { max-height: 350px; }
-            .preview-ilustrasi img { max-height: 100px; }
+            .preview-ilustrasi img { max-height: 120px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- HEADER -->
     <div class="header">
         <h1><i class="fas fa-water"></i> Prinsip Archimedes</h1>
         <p>Pembelajaran dengan pendekatan <strong>Deep Learning</strong> • Konsep & Aplikasi</p>
     </div>
 
     <div class="row">
-        <!-- ===== KOLOM KIRI ===== -->
         <div class="kolom-kiri">
             <h2><i class="fas fa-image"></i> Ilustrasi</h2>
-
-            <!-- GAMBAR ILUSTRASI LANGSUNG TAMPIL -->
             <div class="preview-ilustrasi">
                 <img src="ilustrasi_archimedes.jpg" alt="Ilustrasi Archimedes">
             </div>
-
-            <!-- NARASI -->
             <div class="narasi">
                 <h3><i class="fas fa-lightbulb"></i> Prinsip Archimedes</h3>
-                <p>
-                    "Sebuah benda yang dicelupkan sebagian atau seluruhnya ke dalam fluida akan mengalami gaya angkat ke atas."
-                </p>
-                <p>
-                    Gaya angkat ini disebut <span class="highlight">gaya Archimedes</span>.
-                </p>
-                <p>
-                    Besar gaya Archimedes sama dengan berat fluida yang dipindahkan oleh benda.
-                </p>
+                <p>"Sebuah benda yang dicelupkan sebagian atau seluruhnya ke dalam fluida akan mengalami gaya angkat ke atas."</p>
+                <p>Gaya angkat ini disebut <span class="highlight">gaya Archimedes</span>.</p>
                 <span class="rumus">F<sub>A</sub> = ρ<sub>f</sub> · g · V<sub>bf</sub></span>
                 <div class="keterangan">
                     F<sub>A</sub> = gaya Archimedes (N)<br>
@@ -402,51 +362,39 @@
             </div>
         </div>
 
-        <!-- ===== KOLOM KANAN ===== -->
         <div class="kolom-kanan">
             <h2><i class="fas fa-pencil-alt"></i> Soal & Jawaban</h2>
-
-            <!-- GAMBAR SOAL LANGSUNG TAMPIL -->
             <div class="preview-soal">
                 <img src="soal_1.jpg" alt="Soal Fisika">
             </div>
-
-            <!-- OPSI JAWABAN -->
             <div class="opsi-container">
                 <span class="label"><i class="fas fa-check-circle"></i> Pilih jawaban yang paling tepat:</span>
-
                 <div class="pilihan" data-value="A" onclick="pilihOpsi('A')">
                     <span class="letter">A</span>
                     <span class="text">X = 175, Y = 200, Z = 225</span>
                     <input type="radio" name="jawaban" value="A">
                 </div>
-
                 <div class="pilihan" data-value="B" onclick="pilihOpsi('B')">
                     <span class="letter">B</span>
                     <span class="text">X = 175, Y = 200, Z = 200</span>
                     <input type="radio" name="jawaban" value="B">
                 </div>
-
                 <div class="pilihan" data-value="C" onclick="pilihOpsi('C')">
                     <span class="letter">C</span>
                     <span class="text">X = 200, Y = 200, Z = 200</span>
                     <input type="radio" name="jawaban" value="C">
                 </div>
-
                 <div class="pilihan" data-value="D" onclick="pilihOpsi('D')">
                     <span class="letter">D</span>
                     <span class="text">X = 150, Y = 200, Z = 200</span>
                     <input type="radio" name="jawaban" value="D">
                 </div>
-
                 <div class="pilihan" data-value="E" onclick="pilihOpsi('E')">
                     <span class="letter">E</span>
                     <span class="text">X = 150, Y = 175, Z = 225</span>
                     <input type="radio" name="jawaban" value="E">
                 </div>
             </div>
-
-            <!-- TOMBOL -->
             <div class="tombol-opsi">
                 <button class="btn-primary" onclick="cekJawaban()">
                     <i class="fas fa-check"></i> Periksa Jawaban
@@ -455,19 +403,16 @@
                     <i class="fas fa-undo"></i> Reset
                 </button>
             </div>
-
             <div class="hasil" id="hasil"></div>
         </div>
     </div>
 
-    <!-- ===== TOMBOL TOGGLE SIMULASI ===== -->
     <div class="toggle-simulasi-wrapper">
         <button class="btn-toggle-sim" onclick="toggleSimulasi()">
             <i class="fas fa-flask" id="toggleIcon"></i> <span id="toggleText">Buka Simulasi Percobaan Apel</span>
         </button>
     </div>
 
-    <!-- ===== SIMULASI ===== -->
     <div class="simulasi-section" id="simulasiSection">
         <div id="simContainer">
             <div id="simHeader">
@@ -489,9 +434,6 @@
 </div>
 
 <script>
-    // ================================================================
-    // TOGGLE SIMULASI
-    // ================================================================
     function toggleSimulasi() {
         const section = document.getElementById('simulasiSection');
         const text = document.getElementById('toggleText');
@@ -508,9 +450,6 @@
         }
     }
 
-    // ================================================================
-    // LOGIKA SOAL
-    // ================================================================
     const KUNCI_JAWABAN = 'D';
     let jawabanDipilih = null;
 
@@ -524,9 +463,8 @@
                 el.querySelector('input').checked = true;
             }
         });
-        const hasil = document.getElementById('hasil');
-        hasil.className = 'hasil';
-        hasil.style.display = 'none';
+        document.getElementById('hasil').className = 'hasil';
+        document.getElementById('hasil').style.display = 'none';
     }
 
     function cekJawaban() {
@@ -561,9 +499,7 @@
         hasil.style.display = 'none';
     }
 
-    // ================================================================
-    // SIMULASI KANVAS
-    // ================================================================
+    // ===== SIMULASI KANVAS =====
     (function() {
         const canvas = document.getElementById('simCanvas');
         const ctx = canvas.getContext('2d');
@@ -899,7 +835,7 @@
 
         function start() {
             if (state.phase === 'berjalan') return;
-            if (state.phase === 'selesai') { reset(); setTimeout(start, 300); return; }
+            if (state.phase === 'selesai') { resetSim(); setTimeout(start, 300); return; }
             state.phase = 'berjalan';
             state.progress = 0;
             btnStart.textContent = '⏳ Berlangsung...';
